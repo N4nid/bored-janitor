@@ -1,0 +1,74 @@
+{
+    "name": "MovementMap",
+    "maps": [
+        {
+            "name": "PlayerMovement",
+            "id": "4d0eb71b-1568-46df-96f5-5d2833091ab6",
+            "actions": [
+                {
+                    "name": "moveLeft",
+                    "type": "Button",
+                    "id": "f49b1f3e-d94d-4a5d-843f-9968d173a91a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "moveRight",
+                    "type": "Button",
+                    "id": "f04cebdf-aae3-48e6-8f48-150996fe4157",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "jump",
+                    "type": "Button",
+                    "id": "8ec1f90c-1d8a-4dc0-8167-638cfc3fdff3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8acf51d5-af52-4d42-b8b4-5284c1c0b4cd",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1570d650-70a7-41a0-84cb-7be26d84b660",
+                    "path": "<Keyboard>/a",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "moveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "320ca4cc-ffdd-42eb-8434-b40e4b4ea064",
+                    "path": "<Keyboard>/d",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "moveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
