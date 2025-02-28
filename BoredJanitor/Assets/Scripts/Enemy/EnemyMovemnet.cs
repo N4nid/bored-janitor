@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class EnemyMovemnet : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     [SerializeField] float accelaration = 10;
     public Rigidbody2D rb;

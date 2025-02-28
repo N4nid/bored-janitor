@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class Turtle : MonoBehaviour
 {
     [SerializeField] Transform player; 
-    [SerializeField] EnemyMovemnet movemnet;  
+    [SerializeField] Movement movemnet;  
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float dashDistX  = 1f;
     [SerializeField] float dashDistY = 0.7f;
