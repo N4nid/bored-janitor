@@ -14,15 +14,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float maxSpeed = 20f;
     bool isJumping = false;
     [SerializeField] float delay = 0.09f;
+    [SerializeField] Animator playerAnime;
 
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
+        playerAnime.SetFloat("xVel", Math.Abs(body.linearVelocityX));
         onGround = isOnGround();
+        playerAnime.SetBool("isHigh",!onGround);
     }
 
     public void jump()
@@ -48,11 +48,12 @@ public class PlayerMovement : MonoBehaviour
         if (left)
         {
             direction = -1f;
-
+            transform.localScale = new Vector2(-1,1);
         }
         else
         {
             direction = 1f;
+            transform.localScale = new Vector2(1,1);
         }
         if (Math.Abs(body.linearVelocityX) < maxSpeed)
         {
@@ -67,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         int numberCasts = 20;
         float widthIcrement = width / numberCasts;
         for(int i = 0; i < numberCasts; i++) {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-width / 2 + widthIcrement * i, - height / 2f - groundDistanceMargin), Vector2.down);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-width / 2 + widthIcrement * i,- groundDistanceMargin), Vector2.down);
             if (hit.collider != null && hit.distance <= 0){return true;}
         }
         return false;
