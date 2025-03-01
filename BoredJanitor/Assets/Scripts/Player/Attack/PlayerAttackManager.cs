@@ -8,6 +8,7 @@ public class PlayerAttackManager : MonoBehaviour
 {
     public Animator animator;
     ArrayList obtainedWeapons = new ArrayList();
+    [SerializeField] PlayerAttacks attacks;
     public int weaponIndex = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,10 +42,19 @@ public class PlayerAttackManager : MonoBehaviour
 
     public void LighthAttack(){
         animator.SetInteger("attacktype",1);
+        //attacks.CreateHitbox(0,0);
+    }
+
+    public void createLightHitbox() {
+        attacks.CreateHitbox(0,0);
+    }
+    public void createHeavyHitbox() {
+        attacks.CreateHitbox(0,1);
     }
 
     public void HeavyAttack(){
         animator.SetInteger("attacktype",2);
+        //attacks.CreateHitbox(0,1);
     }
     public void DownAttack(){
         animator.SetInteger("attacktype",3);

@@ -27,7 +27,6 @@ public class Turtle : MonoBehaviour
     bool isJumping = false;
 
 
-   
     void Update()
     {
         if (isOnGround()) {
@@ -78,7 +77,7 @@ public class Turtle : MonoBehaviour
             //Debug.Log("moving");
         } 
         else {
-            Debug.Log("Dahsing now"); // Dashed hier
+           // Debug.Log("Dahsing now"); // Dashed hier
         }
     }
 
@@ -102,7 +101,6 @@ public class Turtle : MonoBehaviour
     }
 
     Vector2[] calculateGroundRoamBounds(float maxBoundDist) {
-        Debug.Log("Calculating Ground Bounds");
         float leftDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.left));
         float rightDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.right));
         if (leftDist >= maxBoundDist || leftDist == -1f) {
@@ -114,10 +112,6 @@ public class Turtle : MonoBehaviour
         Vector2 leftBound = transform.position, rightBound = transform.position;
         leftBound -= new Vector2(leftDist - width / 2 - 0.1f,0f);
         rightBound += new Vector2(rightDist - width / 2 - 0.1f,0f);
-        Debug.Log("Left Dist: " + leftDist);
-        Debug.Log("Right Dist: " + leftDist);
-        Debug.Log("Left Bound: " + leftBound.x);
-        Debug.Log("Right Bound: " + rightBound.x);
         return new Vector2[] {leftBound, rightBound};
     }
 

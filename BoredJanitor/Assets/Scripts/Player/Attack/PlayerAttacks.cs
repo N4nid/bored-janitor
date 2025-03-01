@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
@@ -10,35 +11,24 @@ public class PlayerAttacks : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        HitboxInfos[0,0] = new HitboxInfo(new Vector3(4,1), new Vector2(2,-1)); //ligth
+        HitboxInfos[0,0] = new HitboxInfo(new Vector3(4,1), new Vector2(2,0.5f)); //ligth
         HitboxInfos[0,1] = new HitboxInfo(new Vector3(2,2), new Vector2(1.5f,1)); //heavy
     }
 
-    void CreateHitbox(int weaponTyp, int attackStyle){ //float offsetX, float offsetY, Vector3 size
+    public void CreateHitbox(int weaponTyp, int attackStyle){ //float offsetX, float offsetY, Vector3 size
         HitboxInfo info = HitboxInfos[weaponTyp,attackStyle];
-        Vector3 myPos = new Vector3(transform.position.x + info.offset.x, transform.position.y + info.offset.y);
+        Vector3 myPos = new Vector3(transform.position.x + info.offset.x * transform.localScale.x, transform.position.y + info.offset.y);
         GameObject myHitbox = Instantiate(hitboxPreafab, myPos, Quaternion.identity);
         BoxCollider2D box = myHitbox.GetComponent<BoxCollider2D>();
-        box.size = info.size;
+        box.size = new Vector2(info.size.x,info.size.y);
         myHitbox.transform.parent = this.gameObject.transform;
+        myHitbox.GetComponent<Hitbox>().attackIndex = attackStyle;
+        myHitbox.GetComponent<Hitbox>().weaponIndex = weaponTyp;
+        myHitbox.GetComponent<Hitbox>().playerTrans = transform;
         hitboxen.Add(myHitbox);
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("starting attack");
-            CreateHitbox(0,0);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("starting attack");
-            CreateHitbox(0,1);
-        }
-    }
 
 
 }
