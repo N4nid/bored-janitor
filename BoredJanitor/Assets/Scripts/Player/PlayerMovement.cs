@@ -63,14 +63,14 @@ public class PlayerMovement : MonoBehaviour
     bool isOnGround()
     {
         float width = 1f; // Player width 
-        float height = 2.3f;
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, 0f), Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, 0f), Vector2.down);
+        float height = 2.4f;
+        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, height / 2f + groundDistanceMargin), Vector2.down);
+        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, - (height / 2f + groundDistanceMargin)), Vector2.down);
         //Debug.Log(downLookRight.collider.gameObject.name + "  " + downLookRight.distance);
         //Debug.DrawRay(transform.position - new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
         //Debug.DrawRay(transform.position + new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
-        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < height / 2 + groundDistanceMargin;
-        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < height / 2 + groundDistanceMargin;
+        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance <= 0;
+        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance <= 0;
         if (isOnGroundLeft || isOnGroundRight)
         {
             return true;
