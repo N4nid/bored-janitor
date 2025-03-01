@@ -64,16 +64,11 @@ public class PlayerMovement : MonoBehaviour
     {
         float width = 1f; // Player width 
         float height = 2.4f;
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, height / 2f + groundDistanceMargin), Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, - (height / 2f + groundDistanceMargin)), Vector2.down);
-        //Debug.Log(downLookRight.collider.gameObject.name + "  " + downLookRight.distance);
-        //Debug.DrawRay(transform.position - new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
-        //Debug.DrawRay(transform.position + new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
-        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance <= 0;
-        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance <= 0;
-        if (isOnGroundLeft || isOnGroundRight)
-        {
-            return true;
+        int numberCasts = 20;
+        float widthIcrement = width / numberCasts;
+        for(int i = 0; i < numberCasts; i++) {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-width / 2 + widthIcrement * i, - height / 2f - groundDistanceMargin), Vector2.down);
+            if (hit.collider != null && hit.distance <= 0){return true;}
         }
         return false;
     }
