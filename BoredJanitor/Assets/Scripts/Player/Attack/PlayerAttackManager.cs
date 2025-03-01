@@ -15,22 +15,7 @@ public class PlayerAttackManager : MonoBehaviour
         CollectWeapon("Broom");
         
     }
-//a
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("starting attack");
-            animator.SetInteger("attacktype",1);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("starting attack");
-            animator.SetInteger("attacktype",2);
-        }
-    }
-    
+
 
     public void endAttacking(){
         Debug.Log("ending attack");
@@ -54,21 +39,18 @@ public class PlayerAttackManager : MonoBehaviour
         return (String) obtainedWeapons[weaponIndex];
     }
 
-    void LighthAttack(Vector2 direction){
-        if(direction == Vector2.right){
-            animator.SetInteger("attacktype",1);
-        }else if (direction == Vector2.left){
-
-        }else if (direction == Vector2.up){
-
-        }else if (direction == Vector2.down){
-        
-        }
-
+    public void LighthAttack(){
+        animator.SetInteger("attacktype",1);
     }
 
-    void HeavyAttack(Vector2 direction){
-        
+    public void HeavyAttack(){
+        animator.SetInteger("attacktype",2);
+    }
+    public void DownAttack(){
+        animator.SetInteger("attacktype",3);
+    }
+    public void UpAttack(){
+        animator.SetInteger("attacktype",4);
     }
 
 }

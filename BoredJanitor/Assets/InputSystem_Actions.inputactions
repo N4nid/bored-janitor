@@ -6,7 +6,7 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "LightAttack",
+                    "name": "lightAttack",
                     "type": "Button",
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
                     "expectedControlType": "",
@@ -67,6 +67,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "heavyAttack",
+                    "type": "Button",
+                    "id": "d284b99f-7fec-46e2-be01-0ef79ded304a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "upAttack",
+                    "type": "Button",
+                    "id": "1f4380b2-194c-4cfb-b3c2-4588291844a7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "downAttack",
+                    "type": "Button",
+                    "id": "2d19649b-8043-4441-903e-a34731a1e510",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -77,7 +104,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "LightAttack",
+                    "action": "lightAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -188,6 +215,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "moveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "564a52fd-c08c-4f5a-9e6e-a1ba38fa3865",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "heavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4930218e-2454-4050-ab15-878877b942d9",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "upAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9d2a9115-3a59-4098-a12b-2ec5cb79a1af",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "downAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
