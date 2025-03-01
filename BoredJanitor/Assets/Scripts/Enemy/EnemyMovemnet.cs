@@ -1,16 +1,19 @@
+using System;
 using UnityEngine;
 
-public class EnemyMovemnet : MonoBehaviour
+public class Movement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] float accelaration = 10;
+    public Rigidbody2D rb;
+    public void move(float targetSpeedX, bool isRight)
     {
-        
+        if (Math.Abs(rb.linearVelocityX) < targetSpeedX) {
+            float realAccelaration = (isRight) ? accelaration : -accelaration;
+            rb.AddForceX(realAccelaration*Time.deltaTime);
+            
+        }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void jump(float jumpForce) {
+        rb.AddForce(Vector2.up * jumpForce);
     }
 }
