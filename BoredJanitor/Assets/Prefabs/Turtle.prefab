@@ -188,9 +188,10 @@ GameObject:
   - component: {fileID: 2975041608344026245}
   - component: {fileID: -4967914353456385030}
   - component: {fileID: -8963953951654377790}
+  - component: {fileID: -2055770739899286144}
   m_Layer: 0
   m_Name: Turtle
-  m_TagString: Untagged
+  m_TagString: Enimy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,6 +371,28 @@ MonoBehaviour:
   maxSpeed: 10
   dashDistX: 1
   dashDistY: 0.5
+  jumpDistX: 3.5
+  jumpDistY: 3
+  spotDistance: 10
+  spotFOV: 60
+  width: 1.2
+  height: 1.2
+  roamingRadius: 4
+  jumpForce: 10
+--- !u!114 &-2055770739899286144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938596924087108650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60997904d22c6df0c9b5ea373ccc64f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 75
+  knockbackMultplyer: 5
 --- !u!1 &6569637505500116937
 GameObject:
   m_ObjectHideFlags: 0

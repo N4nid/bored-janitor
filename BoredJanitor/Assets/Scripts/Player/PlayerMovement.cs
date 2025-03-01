@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
         if (onGround && !isJumping)
         {
             body.AddForceY(jumpForce, ForceMode2D.Impulse);
-            Debug.Log("supposed to jump " + onGround);
             isJumping = true;
             Invoke("resetJump", delay);
         }
@@ -57,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Math.Abs(body.linearVelocityX) < maxSpeed)
         {
-            Debug.Log("jsad" + body.linearVelocityX);
             body.AddForceX(moveForce * direction * Time.deltaTime);
         }
     }

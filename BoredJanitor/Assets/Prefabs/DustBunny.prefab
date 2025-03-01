@@ -188,9 +188,10 @@ GameObject:
   - component: {fileID: 2975041608344026245}
   - component: {fileID: 9051480102259145993}
   - component: {fileID: -4967914353456385030}
+  - component: {fileID: -2745031961206371074}
   m_Layer: 2
   m_Name: DustBunny
-  m_TagString: Untagged
+  m_TagString: Enimy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -328,6 +329,8 @@ MonoBehaviour:
   maxAngularSpeed: 10
   roamHeight: 4
   playerDistanceThreshhold: 0.5
+  health: 50
+  mangager: {fileID: 0}
 --- !u!61 &-4967914353456385030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -374,6 +377,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2745031961206371074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938596924087108650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60997904d22c6df0c9b5ea373ccc64f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  knockbackMultplyer: 8
 --- !u!1 &6569637505500116937
 GameObject:
   m_ObjectHideFlags: 0
