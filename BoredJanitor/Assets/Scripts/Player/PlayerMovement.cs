@@ -8,9 +8,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] Rigidbody2D body;
     [SerializeField] float jumpForce;
-    [SerializeField] float pullUpForce;
-    [SerializeField] float moveForce = 500f;
-    [SerializeField] float maxSpeed = 20f;
+    [SerializeField] float pullUpForce = 40f;
+    [SerializeField] float moveForce = 15000f;
+    [SerializeField] float maxSpeed = 4f;
     [SerializeField] float delay = 0.09f;
     [SerializeField] Animator playerAnime;
     [SerializeField] float pullupRayLength = 1f;
