@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 public class Turtle : MonoBehaviour
 {
-    [SerializeField] Transform player; 
+    Transform player; 
     [SerializeField] Movement movemnet;  
     [SerializeField] float maxSpeed = 10;
     [SerializeField] float dashDistX  = 1f;
@@ -23,8 +23,13 @@ public class Turtle : MonoBehaviour
 
 
     bool isFacingRight = false;
-    Vector2[] roamBounds;
+
     bool isJumping = false;
+
+    void Start()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+    }
 
 
     void Update()
@@ -36,7 +41,7 @@ public class Turtle : MonoBehaviour
                 gotoPlayer();
             }
             else {
-                if (roamBounds == null) {roamBounds = calculateGroundRoamBounds(roamingRadius);}
+
                 roam();
             }
         }
@@ -45,19 +50,12 @@ public class Turtle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Ground")) {
-            roamBounds = calculateGroundRoamBounds(roamingRadius);
-        }
+        //if (collision.gameObject.transform)
     }
 
     void roam() {
-        //Debug.Log("Is Roaming");
-        float gettopoint = isFacingRight ? roamBounds[1].x : roamBounds[0].x;
-        //Debug.Log("Trysing to get to: " + gettopoint);
-        if (transform.position.x <= roamBounds[0].x && !isFacingRight) {
-            flipDirection();
-        }
-         if (transform.position.x >= roamBounds[1].x && isFacingRight) {
+        //Debug.Log("Roaming");   
+        if (getSmallestDist(getFullRaycast(transform.position,height,Vector2.left * transform.localScale.x)) < 0.1f) {
             flipDirection();
         }
         movemnet.move(maxSpeed,isFacingRight);
@@ -66,6 +64,7 @@ public class Turtle : MonoBehaviour
     void gotoPlayer() {
         float distX = Math.Abs(player.position.x- transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
+        Debug.Log(distY);
         if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping) {
             isJumping = true;
             movemnet.jump(jumpForce);
@@ -86,39 +85,29 @@ public class Turtle : MonoBehaviour
     }
 
     bool isOnGround() {
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,height/2),Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,-height/2),Vector2.down);
-        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < groundDistanceMargin;
-        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < groundDistanceMargin;
+        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,height/2+groundDistanceMargin),Vector2.down);
+        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,-height/2-groundDistanceMargin),Vector2.down);
+        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance <= 0;
+        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance <= 0;
+        if (isOnGroundLeft && !isOnGroundRight && isFacingRight) {
+            Debug.Log("switching becuase of ground");
+            flipDirection();
+        }
+         if (!isOnGroundLeft && isOnGroundRight && !isFacingRight) {
+            Debug.Log("switching becuase of ground");
+            flipDirection();
+        }
         if (isOnGroundLeft || isOnGroundRight) {
-            RaycastHit2D downLook = (isOnGroundLeft) ? downLookLeft : downLookRight;
-            if (downLook.collider.gameObject.tag.Equals("Platform")) {
-                roamBounds = downLook.collider.gameObject.GetComponent<RoamBounds>().getPosArr();
-            }
             return true;
         }
         return false;
     }
 
-    Vector2[] calculateGroundRoamBounds(float maxBoundDist) {
-        float leftDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.left));
-        float rightDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.right));
-        if (leftDist >= maxBoundDist || leftDist == -1f) {
-            leftDist = maxBoundDist;
-        }
-        if (rightDist >= maxBoundDist || rightDist == -1f) {
-            rightDist = maxBoundDist;
-        }
-        Vector2 leftBound = transform.position, rightBound = transform.position;
-        leftBound -= new Vector2(leftDist - width / 2 - 0.1f,0f);
-        rightBound += new Vector2(rightDist - width / 2 - 0.1f,0f);
-        return new Vector2[] {leftBound, rightBound};
-    }
-
     RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector) {
         RaycastHit2D[] raycasts = new RaycastHit2D[10];
         for (int i = -5; i < 5;i++) {
-            raycasts[i+5] = Physics2D.Raycast(pos + new Vector2(0f,i * (height / 10)),directionVector);
+            raycasts[i+5] = Physics2D.Raycast(pos + new Vector2((-width/2 - 0.05f) * transform.localScale.x,i * (height / 10) + 0.1f),directionVector);
+            //Debug.DrawRay(pos + new Vector2((-width/2 - 0.05f) * transform.localScale.x,i * (height / 10)),directionVector, Color.yellow);
         }
         return raycasts;
     }
@@ -130,9 +119,13 @@ public class Turtle : MonoBehaviour
             float currentAngle = (-viewConeAngle / 2) + i * angleStepFac * viewConeAngle;
             Vector3 ThreeDDirecVector = Quaternion.AngleAxis(currentAngle,Vector3.forward) * new Vector3(lookDirection.x,lookDirection.y,0f);
             Vector2 directionVector = new Vector2(ThreeDDirecVector.x,ThreeDDirecVector.y);
-            raycasts[i] = Physics2D.Raycast(pos ,directionVector * spotDistance);
+            raycasts[i] = Physics2D.Raycast(pos + new Vector2(width/2+.1f,0f) * lookDirection,directionVector * spotDistance);
+            //Debug.DrawRay(pos + new Vector2(width/2+.1f,0f) * lookDirection,directionVector * spotDistance, Color.yellow);
         }
         for (int i = 0; i < raycasts.Length; i++) {
+            if (raycasts[i].collider != null) {
+                //Debug.Log(raycasts[i].collider.gameObject.name);    
+            }
             if(raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance) {
                 return true;
             }
