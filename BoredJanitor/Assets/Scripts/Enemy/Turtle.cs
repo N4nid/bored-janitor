@@ -151,6 +151,15 @@ public class Turtle : MonoBehaviour
         return smallestDist;
     }
 
+    bool isSeeingPlayer() {
+        Vector2 lookVector = (isFacingRight)? Vector2.right : Vector2.left;
+        RaycastHit2D SeeingUp = Physics2D.Raycast(transform.position + new Vector3(0,height/2),lookVector);
+        RaycastHit2D SeeingDown = Physics2D.Raycast(transform.position - new Vector3(0,height/2),lookVector);
+        bool isSeeingUp = SeeingUp.collider != null && SeeingUp.distance < spotDistance && SeeingUp.collider.gameObject.tag == "Player";
+        bool isSeeingDown = SeeingDown.collider != null && SeeingDown.distance < spotDistance && SeeingDown.collider.gameObject.tag == "Player";
+        return isSeeingDown || isSeeingUp;
+    }
+
     void flipDirection() {
         transform.localScale = -transform.localScale;
         isFacingRight = !isFacingRight;

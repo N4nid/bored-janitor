@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2880293464021894772}
   - component: {fileID: 5127178079357379446}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Square (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7750185965723777341}
   - component: {fileID: 2692328028300686597}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Square (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 2975041608344026245}
   - component: {fileID: -4967914353456385030}
   - component: {fileID: -8963953951654377790}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Turtle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,14 +370,6 @@ MonoBehaviour:
   maxSpeed: 10
   dashDistX: 1
   dashDistY: 0.5
-  jumpDistX: 3.5
-  jumpDistY: 3
-  spotDistance: 10
-  spotFOV: 60
-  width: 1.2
-  height: 1.2
-  roamingRadius: 4
-  jumpForce: 10
 --- !u!1 &6569637505500116937
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3993196560639208552}
   - component: {fileID: 5221167874714645244}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Square (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6369205193738680342}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
