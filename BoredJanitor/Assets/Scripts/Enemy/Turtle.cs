@@ -52,9 +52,9 @@ public class Turtle : MonoBehaviour
     }
 
     void roam() {
-        Debug.Log("Is Roaming");
+        //Debug.Log("Is Roaming");
         float gettopoint = isFacingRight ? roamBounds[1].x : roamBounds[0].x;
-            Debug.Log("Trysing to get to: " + gettopoint);
+        //Debug.Log("Trysing to get to: " + gettopoint);
         if (transform.position.x <= roamBounds[0].x && !isFacingRight) {
             flipDirection();
         }
@@ -67,16 +67,16 @@ public class Turtle : MonoBehaviour
     void gotoPlayer() {
         float distX = Math.Abs(player.position.x- transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
-        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - movemnet.rb.linearVelocityX) < 0.2f && !isJumping) {
+        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping) {
             isJumping = true;
             movemnet.jump(jumpForce);
             Invoke("resetJump",0.3f);
-            Debug.Log("Jump");
+            //Debug.Log("Jump");
         }
         if (distX > dashDistX || distY > dashDistY) {
             movemnet.move(maxSpeed,isFacingRight);
-            Debug.Log("moving");
-        }
+            //Debug.Log("moving");
+        } 
         else {
             Debug.Log("Dahsing now"); // Dashed hier
         }
@@ -87,10 +87,10 @@ public class Turtle : MonoBehaviour
     }
 
     bool isOnGround() {
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,0f),Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,0f),Vector2.down);
-        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < height / 2 + groundDistanceMargin;
-        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < height / 2 + groundDistanceMargin;
+        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,height/2),Vector2.down);
+        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,-height/2),Vector2.down);
+        bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < groundDistanceMargin;
+        bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < groundDistanceMargin;
         if (isOnGroundLeft || isOnGroundRight) {
             RaycastHit2D downLook = (isOnGroundLeft) ? downLookLeft : downLookRight;
             if (downLook.collider.gameObject.tag.Equals("Platform")) {
@@ -102,6 +102,7 @@ public class Turtle : MonoBehaviour
     }
 
     Vector2[] calculateGroundRoamBounds(float maxBoundDist) {
+        Debug.Log("Calculating Ground Bounds");
         float leftDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.left));
         float rightDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.right));
         if (leftDist >= maxBoundDist || leftDist == -1f) {
@@ -148,7 +149,7 @@ public class Turtle : MonoBehaviour
     public float getSmallestDist(RaycastHit2D[] hits) {
         float smallestDist = -1f;
         for(int i = 0; i < hits.Length; i++) {
-            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].distance > 0) {
+            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground") {
                 smallestDist = hits[i].distance;
             }
         }
