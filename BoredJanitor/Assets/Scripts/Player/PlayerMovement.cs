@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -16,13 +17,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float delay = 0.09f;
     [SerializeField] Animator playerAnime;
 
-
     // Update is called once per frame
     void Update()
     {
         playerAnime.SetFloat("xVel", Math.Abs(body.linearVelocityX));
         onGround = isOnGround();
         playerAnime.SetBool("isHigh",!onGround);
+       // Debug.Log(onGround);
     }
 
     public void jump()
@@ -64,11 +65,12 @@ public class PlayerMovement : MonoBehaviour
     bool isOnGround()
     {
         float width = 1f; // Player width 
-        float height = 2.4f;
+        //float height = 2.4f;
         int numberCasts = 20;
         float widthIcrement = width / numberCasts;
         for(int i = 0; i < numberCasts; i++) {
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(-width / 2 + widthIcrement * i,- groundDistanceMargin), Vector2.down);
+            Debug.DrawRay(transform.position + new Vector3(-width / 2 + widthIcrement * i,- groundDistanceMargin), Vector2.down, Color.yellow);
             if (hit.collider != null && hit.distance <= 0){return true;}
         }
         return false;

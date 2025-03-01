@@ -24,21 +24,4 @@ public class PlayerAttacks : MonoBehaviour
         hitboxen.Add(myHitbox);
     }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("starting attack");
-            CreateHitbox(0,0);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("starting attack");
-            CreateHitbox(0,1);
-        }
-    }
-
-
 }
