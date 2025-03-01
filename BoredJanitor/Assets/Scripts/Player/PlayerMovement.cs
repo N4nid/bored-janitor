@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Rigidbody2D body;
     float groundDistanceMargin = 0.1f;
     public bool onGround = true;
-    float jumpForce = 100f;
-    float moveForce = 100f;
-    float maxSpeed = 100f;
+    [SerializeField] float jumpForce = 100f;
+    [SerializeField] float moveForce = 300f;
+    [SerializeField] float maxSpeed = 3f;  
 
     void Start()
     {

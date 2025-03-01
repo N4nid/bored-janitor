@@ -656,6 +656,9 @@ MonoBehaviour:
   player: {fileID: 943737308}
   body: {fileID: 943737317}
   onGround: 1
+  jumpForce: 100
+  moveForce: 300
+  maxSpeed: 3
 --- !u!212 &943737314
 SpriteRenderer:
   m_ObjectHideFlags: 0
