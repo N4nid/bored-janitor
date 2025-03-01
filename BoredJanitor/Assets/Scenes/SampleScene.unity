@@ -630,8 +630,8 @@ MonoBehaviour:
   player: {fileID: 943737308}
   body: {fileID: 943737317}
   onGround: 1
-  jumpForce: 6
-  moveForce: 1000
+  jumpForce: 24
+  moveForce: 15000
   maxSpeed: 4
   delay: 0.1
 --- !u!114 &943737312
@@ -790,9 +790,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 5
+  m_LinearDamping: 4.5
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
