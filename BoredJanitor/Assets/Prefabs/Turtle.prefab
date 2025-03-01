@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  movemnet: {fileID: 0}
+  movemnet: {fileID: 207598979385325915}
   maxSpeed: 10
   dashDistX: 1
   dashDistY: 0.5

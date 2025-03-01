@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spotDistance: 10
-  rb: {fileID: 0}
+  rb: {fileID: 2975041608344026245}
   player: {fileID: 0}
   maxSpeed: 4
   accelaration: 300
@@ -330,7 +330,7 @@ MonoBehaviour:
   roamHeight: 4
   playerDistanceThreshhold: 0.5
   health: 50
-  mangager: {fileID: 0}
+  mangager: {fileID: -2745031961206371074}
 --- !u!61 &-4967914353456385030
 BoxCollider2D:
   m_ObjectHideFlags: 0
