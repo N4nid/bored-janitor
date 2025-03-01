@@ -52,6 +52,9 @@ public class Turtle : MonoBehaviour
     }
 
     void roam() {
+        Debug.Log("Is Roaming");
+        float gettopoint = isFacingRight ? roamBounds[1].x : roamBounds[0].x;
+            Debug.Log("Trysing to get to: " + gettopoint);
         if (transform.position.x <= roamBounds[0].x && !isFacingRight) {
             flipDirection();
         }
@@ -68,9 +71,11 @@ public class Turtle : MonoBehaviour
             isJumping = true;
             movemnet.jump(jumpForce);
             Invoke("resetJump",0.3f);
+            Debug.Log("Jump");
         }
         if (distX > dashDistX || distY > dashDistY) {
             movemnet.move(maxSpeed,isFacingRight);
+            Debug.Log("moving");
         }
         else {
             Debug.Log("Dahsing now"); // Dashed hier
@@ -116,10 +121,9 @@ public class Turtle : MonoBehaviour
     }
 
     RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector) {
-        RaycastHit2D[] raycasts = new RaycastHit2D[3];
-        for (int i = -1; i < 2;i++) {
-
-            raycasts[i+1] = Physics2D.Raycast(pos + new Vector2(0f,i * (height / 2)),directionVector);
+        RaycastHit2D[] raycasts = new RaycastHit2D[10];
+        for (int i = -5; i < 5;i++) {
+            raycasts[i+5] = Physics2D.Raycast(pos + new Vector2(0f,i * (height / 10)),directionVector);
         }
         return raycasts;
     }

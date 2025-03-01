@@ -14,10 +14,11 @@ public class DustBunny : MonoBehaviour
 
     [SerializeField] float roamHeight = 4;
     [SerializeField] float playerDistanceThreshhold = 0.2f;
-        float direction = 1f;
+    float direction = 1f;
     bool isMovingUp = true;
     float roamLowerY;
     float roamHigherY;
+    bool hasSeenPlayer;
 
     void Start()
     {
@@ -27,7 +28,11 @@ public class DustBunny : MonoBehaviour
 
     void Update()
     {
-        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12)) {
+        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12) || hasSeenPlayer) {
+           if (!hasSeenPlayer) {
+            rb.AddForceY(-rb.linearVelocityY * 40);
+           }
+           hasSeenPlayer = true;
            goToPlayer();
         }
         else {
@@ -48,7 +53,6 @@ public class DustBunny : MonoBehaviour
             switchDirection(true);
             forceChangeDirection = true;
         } 
-        Debug.Log(isMovingUp);
         Vector2 direcVector = isMovingUp ? Vector2.up : Vector2.down;
         moveInDirec(direcVector,maxSpeed,accelaration,forceChangeDirection);
     }
@@ -56,9 +60,15 @@ public class DustBunny : MonoBehaviour
     void goToPlayer() {
         Vector2 lookAtVector = player.position - transform.position;
         float distanceToPlayer = Vector2.Distance(player.position,transform.position);
-        rotateToDirec(Vector2.Angle(Vector2.up,lookAtVector));
+        rotateToDirec(Vector2.Angle(Vector2.left,lookAtVector));
         if (distanceToPlayer > playerDistanceThreshhold) {
             moveInDirec(lookAtVector,maxSpeed,accelaration,false);
+        }
+        else {
+            if (rb.linearVelocity.magnitude > 0.1f) {
+                rb.AddForce(-rb.linearVelocity);
+            }
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
         }
     }
 
@@ -69,21 +79,7 @@ public class DustBunny : MonoBehaviour
     }
 
     void rotateToDirec(float targetRotation) {
-        float myRotation = transform.rotation.eulerAngles.z % 360;
-        targetRotation %= 360;
-        float rightRotationValue = (myRotation - targetRotation) % 360;
-        if (Math.Abs(targetRotation-myRotation) > 1.5f) {
-              if (rightRotationValue < 180) {
-            if (rb.angularVelocity < maxAngularSpeed) {
-                rb.AddTorque(rightRotationValue * accelaration * Time.deltaTime);
-            }
-        }
-        else {
-            if (rb.angularVelocity < maxSpeed) {
-                rb.AddTorque(-accelaration * Time.deltaTime);
-            }
-        }
-        }
+        this.transform.localRotation = Quaternion.Euler(0f,0f,targetRotation);
     }
 
     bool canSeePlayer (Vector2 pos, Vector2 lookDirection, float viewConeAngle, int numberCasts) {

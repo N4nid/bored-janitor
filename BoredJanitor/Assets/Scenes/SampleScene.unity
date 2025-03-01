@@ -714,7 +714,7 @@ Transform:
   m_GameObject: {fileID: 943737308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.22, y: 3.3, z: -1.33}
+  m_LocalPosition: {x: -3.78, y: 1.09, z: -1.33}
   m_LocalScale: {x: 1.2593694, y: 2.3743384, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1220,6 +1220,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 943737315}
+    - target: {fileID: 9051480102259145993, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
+      propertyPath: playerDistanceThreshhold
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1465,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8963953951654377790, guid: ba5ef3bce074e96848169de6ffc5d683, type: 3}
       propertyPath: dashDistY
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8963953951654377790, guid: ba5ef3bce074e96848169de6ffc5d683, type: 3}
       propertyPath: jumpDistX
@@ -1505,7 +1509,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ba5ef3bce074e96848169de6ffc5d683, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.56
+      value: -3.81
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ba5ef3bce074e96848169de6ffc5d683, type: 3}
       propertyPath: m_LocalPosition.z
