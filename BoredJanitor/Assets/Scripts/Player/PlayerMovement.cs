@@ -40,12 +40,10 @@ public class PlayerMovement : MonoBehaviour
         {
             //body.AddForceY(pullUpForce, ForceMode2D.Impulse);
             body.AddForce(new Vector2(pullUpForce * direction * pullupFactor, pullUpForce), ForceMode2D.Impulse);
-            Debug.Log("LEDGE BOOOST ");
         }
         else if (onGround && !isJumping)
         {
             body.AddForceY(jumpForce, ForceMode2D.Impulse);
-            Debug.Log("supposed to jump " + onGround);
             isJumping = true;
             Invoke("resetJump", delay);
         }
@@ -54,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     void resetJump()
     {
         isJumping = false;
-        Debug.Log("reset Jump ");
     }
 
     public void move(bool left)
