@@ -322,7 +322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spotDistance: 10
   rb: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 4639683675919331400, guid: 9eebd6f29b81b7945af9b90243fa34bd, type: 3}
   maxSpeed: 4
   accelaration: 300
   angularAcccelaration: 1000
@@ -391,6 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 50
   knockbackMultplyer: 8
+  player: {fileID: 8731945236726430784, guid: 9eebd6f29b81b7945af9b90243fa34bd, type: 3}
 --- !u!1 &6569637505500116937
 GameObject:
   m_ObjectHideFlags: 0

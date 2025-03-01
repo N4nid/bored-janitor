@@ -5,13 +5,13 @@ using UnityEngine.Rendering;
 
 public class Turtle : MonoBehaviour
 {
-    [SerializeField] Transform player; 
-    [SerializeField] Movement movemnet;  
+    [SerializeField] Transform player;
+    [SerializeField] Movement movemnet;
     [SerializeField] float maxSpeed = 10;
-    [SerializeField] float dashDistX  = 1f;
+    [SerializeField] float dashDistX = 1f;
     [SerializeField] float dashDistY = 0.7f;
-    [SerializeField] float jumpDistX  = 3.5f;
-    [SerializeField] float jumpDistY  = 3f;
+    [SerializeField] float jumpDistX = 3.5f;
+    [SerializeField] float jumpDistY = 3f;
 
     [SerializeField] float spotDistance = 10f;
     [SerializeField] float spotFOV = 60;
@@ -29,14 +29,17 @@ public class Turtle : MonoBehaviour
 
     void Update()
     {
-        if (isOnGround()) {
+        if (isOnGround())
+        {
             Vector2 lookDirec = isFacingRight ? Vector2.right : Vector2.left;
             float distY = Math.Abs(player.position.y - transform.position.y);
-            if(canSeePlayer(transform.position,lookDirec,spotFOV,12)) {
+            if (canSeePlayer(transform.position, lookDirec, spotFOV, 12))
+            {
                 gotoPlayer();
             }
-            else {
-                if (roamBounds == null) {roamBounds = calculateGroundRoamBounds(roamingRadius);}
+            else
+            {
+                if (roamBounds == null) { roamBounds = calculateGroundRoamBounds(roamingRadius); }
                 roam();
             }
         }
@@ -45,54 +48,66 @@ public class Turtle : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag.Equals("Ground")) {
+        if (collision.gameObject.tag.Equals("Ground"))
+        {
             roamBounds = calculateGroundRoamBounds(roamingRadius);
         }
     }
 
-    void roam() {
+    void roam()
+    {
         //Debug.Log("Is Roaming");
         float gettopoint = isFacingRight ? roamBounds[1].x : roamBounds[0].x;
         //Debug.Log("Trysing to get to: " + gettopoint);
-        if (transform.position.x <= roamBounds[0].x && !isFacingRight) {
+        if (transform.position.x <= roamBounds[0].x && !isFacingRight)
+        {
             flipDirection();
         }
-         if (transform.position.x >= roamBounds[1].x && isFacingRight) {
+        if (transform.position.x >= roamBounds[1].x && isFacingRight)
+        {
             flipDirection();
         }
-        movemnet.move(maxSpeed,isFacingRight);
+        movemnet.move(maxSpeed, isFacingRight);
     }
 
-    void gotoPlayer() {
-        float distX = Math.Abs(player.position.x- transform.position.x);
+    void gotoPlayer()
+    {
+        float distX = Math.Abs(player.position.x - transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
-        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping) {
+        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping)
+        {
             isJumping = true;
             movemnet.jump(jumpForce);
-            Invoke("resetJump",0.3f);
+            Invoke("resetJump", 0.3f);
             //Debug.Log("Jump");
         }
-        if (distX > dashDistX || distY > dashDistY) {
-            movemnet.move(maxSpeed,isFacingRight);
+        if (distX > dashDistX || distY > dashDistY)
+        {
+            movemnet.move(maxSpeed, isFacingRight);
             //Debug.Log("moving");
-        } 
-        else {
-           // Debug.Log("Dahsing now"); // Dashed hier
+        }
+        else
+        {
+            // Debug.Log("Dahsing now"); // Dashed hier
         }
     }
 
-    void resetJump() {
+    void resetJump()
+    {
         isJumping = false;
     }
 
-    bool isOnGround() {
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,height/2),Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,-height/2),Vector2.down);
+    bool isOnGround()
+    {
+        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, height / 2), Vector2.down);
+        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, -height / 2), Vector2.down);
         bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < groundDistanceMargin;
         bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < groundDistanceMargin;
-        if (isOnGroundLeft || isOnGroundRight) {
+        if (isOnGroundLeft || isOnGroundRight)
+        {
             RaycastHit2D downLook = (isOnGroundLeft) ? downLookLeft : downLookRight;
-            if (downLook.collider.gameObject.tag.Equals("Platform")) {
+            if (downLook.collider.gameObject.tag.Equals("Platform"))
+            {
                 roamBounds = downLook.collider.gameObject.GetComponent<RoamBounds>().getPosArr();
             }
             return true;
@@ -100,66 +115,80 @@ public class Turtle : MonoBehaviour
         return false;
     }
 
-    Vector2[] calculateGroundRoamBounds(float maxBoundDist) {
-        float leftDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.left));
-        float rightDist = getSmallestDist(getFullRaycast(transform.position,height - 0.1f,Vector2.right));
-        if (leftDist >= maxBoundDist || leftDist == -1f) {
+    Vector2[] calculateGroundRoamBounds(float maxBoundDist)
+    {
+        float leftDist = getSmallestDist(getFullRaycast(transform.position, height - 0.1f, Vector2.left));
+        float rightDist = getSmallestDist(getFullRaycast(transform.position, height - 0.1f, Vector2.right));
+        if (leftDist >= maxBoundDist || leftDist == -1f)
+        {
             leftDist = maxBoundDist;
         }
-        if (rightDist >= maxBoundDist || rightDist == -1f) {
+        if (rightDist >= maxBoundDist || rightDist == -1f)
+        {
             rightDist = maxBoundDist;
         }
         Vector2 leftBound = transform.position, rightBound = transform.position;
-        leftBound -= new Vector2(leftDist - width / 2 - 0.1f,0f);
-        rightBound += new Vector2(rightDist - width / 2 - 0.1f,0f);
-        return new Vector2[] {leftBound, rightBound};
+        leftBound -= new Vector2(leftDist - width / 2 - 0.1f, 0f);
+        rightBound += new Vector2(rightDist - width / 2 - 0.1f, 0f);
+        return new Vector2[] { leftBound, rightBound };
     }
 
-    RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector) {
+    RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector)
+    {
         RaycastHit2D[] raycasts = new RaycastHit2D[10];
-        for (int i = -5; i < 5;i++) {
-            raycasts[i+5] = Physics2D.Raycast(pos + new Vector2(0f,i * (height / 10)),directionVector);
+        for (int i = -5; i < 5; i++)
+        {
+            raycasts[i + 5] = Physics2D.Raycast(pos + new Vector2(0f, i * (height / 10)), directionVector);
         }
         return raycasts;
     }
 
-    bool canSeePlayer (Vector2 pos, Vector2 lookDirection, float viewConeAngle, int numberCasts) {
+    bool canSeePlayer(Vector2 pos, Vector2 lookDirection, float viewConeAngle, int numberCasts)
+    {
         RaycastHit2D[] raycasts = new RaycastHit2D[numberCasts];
         float angleStepFac = 1f / (float)numberCasts;
-        for (int i = 0; i < numberCasts;i++) {
+        for (int i = 0; i < numberCasts; i++)
+        {
             float currentAngle = (-viewConeAngle / 2) + i * angleStepFac * viewConeAngle;
-            Vector3 ThreeDDirecVector = Quaternion.AngleAxis(currentAngle,Vector3.forward) * new Vector3(lookDirection.x,lookDirection.y,0f);
-            Vector2 directionVector = new Vector2(ThreeDDirecVector.x,ThreeDDirecVector.y);
-            raycasts[i] = Physics2D.Raycast(pos ,directionVector * spotDistance);
+            Vector3 ThreeDDirecVector = Quaternion.AngleAxis(currentAngle, Vector3.forward) * new Vector3(lookDirection.x, lookDirection.y, 0f);
+            Vector2 directionVector = new Vector2(ThreeDDirecVector.x, ThreeDDirecVector.y);
+            raycasts[i] = Physics2D.Raycast(pos, directionVector * spotDistance);
         }
-        for (int i = 0; i < raycasts.Length; i++) {
-            if(raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance) {
+        for (int i = 0; i < raycasts.Length; i++)
+        {
+            if (raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    public float getSmallestDist(RaycastHit2D[] hits) {
+    public float getSmallestDist(RaycastHit2D[] hits)
+    {
         float smallestDist = -1f;
-        for(int i = 0; i < hits.Length; i++) {
-            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground") {
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground")
+            {
                 smallestDist = hits[i].distance;
             }
         }
         return smallestDist;
     }
 
-    bool isSeeingPlayer() {
-        Vector2 lookVector = (isFacingRight)? Vector2.right : Vector2.left;
-        RaycastHit2D SeeingUp = Physics2D.Raycast(transform.position + new Vector3(0,height/2),lookVector);
-        RaycastHit2D SeeingDown = Physics2D.Raycast(transform.position - new Vector3(0,height/2),lookVector);
+    bool isSeeingPlayer()
+    {
+        Vector2 lookVector = (isFacingRight) ? Vector2.right : Vector2.left;
+        RaycastHit2D SeeingUp = Physics2D.Raycast(transform.position + new Vector3(0, height / 2), lookVector);
+        RaycastHit2D SeeingDown = Physics2D.Raycast(transform.position - new Vector3(0, height / 2), lookVector);
         bool isSeeingUp = SeeingUp.collider != null && SeeingUp.distance < spotDistance && SeeingUp.collider.gameObject.tag == "Player";
         bool isSeeingDown = SeeingDown.collider != null && SeeingDown.distance < spotDistance && SeeingDown.collider.gameObject.tag == "Player";
         return isSeeingDown || isSeeingUp;
     }
 
-    void flipDirection() {
+    void flipDirection()
+    {
         transform.localScale = -transform.localScale;
         isFacingRight = !isFacingRight;
     }
