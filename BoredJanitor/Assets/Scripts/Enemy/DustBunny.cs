@@ -42,19 +42,16 @@ public class DustBunny : MonoBehaviour
 
     void roam()
     {
-        bool forceChangeDirection = false;
         if (transform.position.y > roamHigherY) {
             isMovingUp = false;
             switchDirection(false);
-            forceChangeDirection = true;
         } 
         if (transform.position.y < roamLowerY) {
             isMovingUp = true;
             switchDirection(true);
-            forceChangeDirection = true;
         } 
         Vector2 direcVector = isMovingUp ? Vector2.up : Vector2.down;
-        moveInDirec(direcVector,maxSpeed,accelaration,forceChangeDirection);
+        moveInDirec(direcVector,maxSpeed,accelaration);
     }
     
     void goToPlayer() {
@@ -62,7 +59,7 @@ public class DustBunny : MonoBehaviour
         float distanceToPlayer = Vector2.Distance(player.position,transform.position);
         rotateToDirec(Vector2.Angle(Vector2.left,lookAtVector));
         if (distanceToPlayer > playerDistanceThreshhold) {
-            moveInDirec(lookAtVector,maxSpeed,accelaration,false);
+            moveInDirec(lookAtVector,maxSpeed,accelaration);
         }
         else {
             if (rb.linearVelocity.magnitude > 0.1f) {
@@ -72,8 +69,8 @@ public class DustBunny : MonoBehaviour
         }
     }
 
-    void moveInDirec(Vector2 direction, float maxSpeed,float accelaration, bool forceChangeDirection) {
-        if (Math.Sqrt(Math.Pow(rb.linearVelocityX,2)+Math.Pow(rb.linearVelocityY,2)) < maxSpeed || forceChangeDirection) {
+    void moveInDirec(Vector2 direction, float maxSpeed,float accelaration) {
+        if (Math.Sqrt(Math.Pow(rb.linearVelocityX,2)+Math.Pow(rb.linearVelocityY,2)) < maxSpeed ||  20 < Math.Abs(Vector2.Angle(direction,rb.linearVelocity))) {
             rb.AddForce(direction*accelaration*Time.deltaTime);
         }
     }
