@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -47,10 +48,10 @@ public class PlayerMovement : MonoBehaviour
         {
             direction = 1f;
         }
-        if (Mathf.Abs(body.linearVelocityX) < maxSpeed)
+        if (Math.Abs(body.linearVelocityX) < maxSpeed)
         {
-            Debug.Log("please work" + body.linearVelocityX);
-            body.AddForceX(direction * moveForce * Time.deltaTime, ForceMode2D.Force);
+            Debug.Log("jsad" + body.linearVelocityX);
+            body.AddForceX(moveForce * direction * Time.deltaTime);
         }
     }
     bool isOnGround()
@@ -59,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
         float height = 2.3f;
         RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, 0f), Vector2.down);
         RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, 0f), Vector2.down);
+        Debug.DrawRay(transform.position - new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
+        Debug.DrawRay(transform.position + new Vector3(width / 2, 0f), Vector2.down, Color.yellow, 1);
         bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance < height / 2 + groundDistanceMargin;
         bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance < height / 2 + groundDistanceMargin;
         if (isOnGroundLeft || isOnGroundRight)
