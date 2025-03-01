@@ -186,10 +186,10 @@ GameObject:
   - component: {fileID: 5173114545969487170}
   - component: {fileID: 207598979385325915}
   - component: {fileID: 2975041608344026245}
+  - component: {fileID: 9051480102259145993}
   - component: {fileID: -4967914353456385030}
-  - component: {fileID: -8963953951654377790}
   m_Layer: 2
-  m_Name: Turtle
+  m_Name: DustBunny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,7 +288,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3938596924087108650}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -307,6 +307,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &9051480102259145993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938596924087108650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7c479a9e52792109c9dd5c46ea69c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spotDistance: 10
+  rb: {fileID: 0}
+  player: {fileID: 0}
+  maxSpeed: 4
+  accelaration: 300
+  roamHeight: 4
+  playerDistanceThreshhold: 0.5
 --- !u!61 &-4967914353456385030
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -353,31 +372,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8963953951654377790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938596924087108650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a493e48e41268accd84599806a89cac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  movemnet: {fileID: 0}
-  maxSpeed: 10
-  dashDistX: 1
-  dashDistY: 0.5
-  jumpDistX: 3.5
-  jumpDistY: 3
-  spotDistance: 10
-  spotFOV: 60
-  width: 1.2
-  height: 1.2
-  roamingRadius: 4
-  jumpForce: 10
 --- !u!1 &6569637505500116937
 GameObject:
   m_ObjectHideFlags: 0
