@@ -82,16 +82,16 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector2 rayDirection = (direction == -1) ? Vector2.left : Vector2.right;
             Vector3 origin = new Vector3(player.transform.localScale.x + (0.2f * direction), height + (i * 0.2f));
-            Debug.DrawRay(transform.position + origin, rayDirection * pullupRayLength, Color.green, 0.2f, true);
+            //Debug.DrawRay(transform.position + origin, rayDirection * pullupRayLength, Color.green, 0.2f, true);
             RaycastHit2D eyeLevel = Physics2D.Raycast(transform.position + origin, rayDirection, pullupRayLength);
 
             if (eyeLevel.collider != null)
             {
 
-                Debug.Log(eyeLevel.collider.gameObject.name + "  " + eyeLevel.collider.gameObject.tag + "   " + eyeLevel.distance);
+                //Debug.Log(eyeLevel.collider.gameObject.name + "  " + eyeLevel.collider.gameObject.tag + "   " + eyeLevel.distance);
                 if (eyeLevel.collider.gameObject.tag == "Platform")
                 {
-                    Debug.Log("CAN CLIMB LEDGE");
+                    //Debug.Log("CAN CLIMB LEDGE");
                     return true;
                 }
             }
