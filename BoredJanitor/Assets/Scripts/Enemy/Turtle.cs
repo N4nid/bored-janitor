@@ -5,13 +5,13 @@ using UnityEngine.Rendering;
 
 public class Turtle : MonoBehaviour
 {
-    Transform player; 
-    [SerializeField] Movement movemnet;  
+    Transform player;
+    [SerializeField] Movement movemnet;
     [SerializeField] float maxSpeed = 10;
-    [SerializeField] float dashDistX  = 1f;
+    [SerializeField] float dashDistX = 1f;
     [SerializeField] float dashDistY = 0.7f;
-    [SerializeField] float jumpDistX  = 3.5f;
-    [SerializeField] float jumpDistY  = 3f;
+    [SerializeField] float jumpDistX = 3.5f;
+    [SerializeField] float jumpDistY = 3f;
 
     [SerializeField] float spotDistance = 10f;
     [SerializeField] float spotFOV = 60;
@@ -34,13 +34,16 @@ public class Turtle : MonoBehaviour
 
     void Update()
     {
-        if (isOnGround()) {
+        if (isOnGround())
+        {
             Vector2 lookDirec = isFacingRight ? Vector2.right : Vector2.left;
             float distY = Math.Abs(player.position.y - transform.position.y);
-            if(canSeePlayer(transform.position,lookDirec,spotFOV,12)) {
+            if (canSeePlayer(transform.position, lookDirec, spotFOV, 12))
+            {
                 gotoPlayer();
             }
-            else {
+            else
+            {
 
                 roam();
             }
@@ -53,106 +56,129 @@ public class Turtle : MonoBehaviour
         //if (collision.gameObject.transform)
     }
 
-    void roam() {
+    void roam()
+    {
         //Debug.Log("Roaming");   
-        if (getSmallestDist(getFullRaycast(transform.position,height,Vector2.left * transform.localScale.x)) < 0.1f) {
+        if (getSmallestDist(getFullRaycast(transform.position, height, Vector2.left * transform.localScale.x)) < 0.1f)
+        {
             flipDirection();
         }
-        movemnet.move(maxSpeed,isFacingRight);
+        movemnet.move(maxSpeed, isFacingRight);
     }
 
-    void gotoPlayer() {
-        float distX = Math.Abs(player.position.x- transform.position.x);
+    void gotoPlayer()
+    {
+        float distX = Math.Abs(player.position.x - transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
-        Debug.Log(distY);
-        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping) {
+        //Debug.Log(distY);
+        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping)
+        {
             isJumping = true;
             movemnet.jump(jumpForce);
-            Invoke("resetJump",0.3f);
+            Invoke("resetJump", 0.3f);
             //Debug.Log("Jump");
         }
-        if (distX > dashDistX || distY > dashDistY) {
-            movemnet.move(maxSpeed,isFacingRight);
+        if (distX > dashDistX || distY > dashDistY)
+        {
+            movemnet.move(maxSpeed, isFacingRight);
             //Debug.Log("moving");
-        } 
-        else {
-           // Debug.Log("Dahsing now"); // Dashed hier
+        }
+        else
+        {
+            // Debug.Log("Dahsing now"); // Dashed hier
         }
     }
 
-    void resetJump() {
+    void resetJump()
+    {
         isJumping = false;
     }
 
-    bool isOnGround() {
-        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2,height/2+groundDistanceMargin),Vector2.down);
-        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2,-height/2-groundDistanceMargin),Vector2.down);
+    bool isOnGround()
+    {
+        RaycastHit2D downLookLeft = Physics2D.Raycast(transform.position - new Vector3(width / 2, height / 2 + groundDistanceMargin), Vector2.down);
+        RaycastHit2D downLookRight = Physics2D.Raycast(transform.position + new Vector3(width / 2, -height / 2 - groundDistanceMargin), Vector2.down);
         bool isOnGroundLeft = downLookLeft.collider != null && downLookLeft.distance <= 0;
         bool isOnGroundRight = downLookRight.collider != null && downLookRight.distance <= 0;
-        if (isOnGroundLeft && !isOnGroundRight && isFacingRight) {
-            Debug.Log("switching becuase of ground");
+        if (isOnGroundLeft && !isOnGroundRight && isFacingRight)
+        {
+            //Debug.Log("switching becuase of ground");
             flipDirection();
         }
-         if (!isOnGroundLeft && isOnGroundRight && !isFacingRight) {
-            Debug.Log("switching becuase of ground");
+        if (!isOnGroundLeft && isOnGroundRight && !isFacingRight)
+        {
+            // Debug.Log("switching becuase of ground");
             flipDirection();
         }
-        if (isOnGroundLeft || isOnGroundRight) {
+        if (isOnGroundLeft || isOnGroundRight)
+        {
             return true;
         }
         return false;
     }
 
-    RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector) {
+    RaycastHit2D[] getFullRaycast(Vector2 pos, float height, Vector2 directionVector)
+    {
         RaycastHit2D[] raycasts = new RaycastHit2D[10];
-        for (int i = -5; i < 5;i++) {
-            raycasts[i+5] = Physics2D.Raycast(pos + new Vector2((-width/2 - 0.05f) * transform.localScale.x,i * (height / 10) + 0.1f),directionVector);
+        for (int i = -5; i < 5; i++)
+        {
+            raycasts[i + 5] = Physics2D.Raycast(pos + new Vector2((-width / 2 - 0.05f) * transform.localScale.x, i * (height / 10) + 0.1f), directionVector);
             //Debug.DrawRay(pos + new Vector2((-width/2 - 0.05f) * transform.localScale.x,i * (height / 10)),directionVector, Color.yellow);
         }
         return raycasts;
     }
 
-    bool canSeePlayer (Vector2 pos, Vector2 lookDirection, float viewConeAngle, int numberCasts) {
+    bool canSeePlayer(Vector2 pos, Vector2 lookDirection, float viewConeAngle, int numberCasts)
+    {
         RaycastHit2D[] raycasts = new RaycastHit2D[numberCasts];
         float angleStepFac = 1f / (float)numberCasts;
-        for (int i = 0; i < numberCasts;i++) {
+        for (int i = 0; i < numberCasts; i++)
+        {
             float currentAngle = (-viewConeAngle / 2) + i * angleStepFac * viewConeAngle;
-            Vector3 ThreeDDirecVector = Quaternion.AngleAxis(currentAngle,Vector3.forward) * new Vector3(lookDirection.x,lookDirection.y,0f);
-            Vector2 directionVector = new Vector2(ThreeDDirecVector.x,ThreeDDirecVector.y);
-            raycasts[i] = Physics2D.Raycast(pos + new Vector2(width/2+.1f,0f) * lookDirection,directionVector * spotDistance);
+            Vector3 ThreeDDirecVector = Quaternion.AngleAxis(currentAngle, Vector3.forward) * new Vector3(lookDirection.x, lookDirection.y, 0f);
+            Vector2 directionVector = new Vector2(ThreeDDirecVector.x, ThreeDDirecVector.y);
+            raycasts[i] = Physics2D.Raycast(pos + new Vector2(width / 2 + .1f, 0f) * lookDirection, directionVector * spotDistance);
             //Debug.DrawRay(pos + new Vector2(width/2+.1f,0f) * lookDirection,directionVector * spotDistance, Color.yellow);
         }
-        for (int i = 0; i < raycasts.Length; i++) {
-            if (raycasts[i].collider != null) {
+        for (int i = 0; i < raycasts.Length; i++)
+        {
+            if (raycasts[i].collider != null)
+            {
                 //Debug.Log(raycasts[i].collider.gameObject.name);    
             }
-            if(raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance) {
+            if (raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance)
+            {
                 return true;
             }
         }
         return false;
     }
 
-    public float getSmallestDist(RaycastHit2D[] hits) {
+    public float getSmallestDist(RaycastHit2D[] hits)
+    {
         float smallestDist = -1f;
-        for(int i = 0; i < hits.Length; i++) {
-            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground") {
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground")
+            {
                 smallestDist = hits[i].distance;
             }
         }
         return smallestDist;
     }
 
-    bool isSeeingPlayer() {
-        Vector2 lookVector = (isFacingRight)? Vector2.right : Vector2.left;
-        RaycastHit2D SeeingUp = Physics2D.Raycast(transform.position + new Vector3(0,height/2),lookVector);
-        RaycastHit2D SeeingDown = Physics2D.Raycast(transform.position - new Vector3(0,height/2),lookVector);
+    bool isSeeingPlayer()
+    {
+        Vector2 lookVector = (isFacingRight) ? Vector2.right : Vector2.left;
+        RaycastHit2D SeeingUp = Physics2D.Raycast(transform.position + new Vector3(0, height / 2), lookVector);
+        RaycastHit2D SeeingDown = Physics2D.Raycast(transform.position - new Vector3(0, height / 2), lookVector);
         bool isSeeingUp = SeeingUp.collider != null && SeeingUp.distance < spotDistance && SeeingUp.collider.gameObject.tag == "Player";
         bool isSeeingDown = SeeingDown.collider != null && SeeingDown.distance < spotDistance && SeeingDown.collider.gameObject.tag == "Player";
         return isSeeingDown || isSeeingUp;
     }
 
-    void flipDirection() {
+    void flipDirection()
+    {
         transform.localScale = -transform.localScale;
         isFacingRight = !isFacingRight;
     }
