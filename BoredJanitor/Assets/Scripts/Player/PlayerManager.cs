@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour
         isBored = true;
         ui.showBoredMenu();
         player.GetComponent<Animator>().SetBool("isBored", true);
+        sound.playMusic("boredBgMusic");
         //TODO make die
     }
 
