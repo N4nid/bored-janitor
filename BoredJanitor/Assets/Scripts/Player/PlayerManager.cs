@@ -7,7 +7,9 @@ public class PlayerManager : MonoBehaviour
     public float motivation = 100; // acts as Health
     [SerializeField] UiManager ui;
     [SerializeField] soundManager sound;
+    [SerializeField] Vector3 spawnPoint = new Vector3(0, 0, 0);
     public bool isBored = false;
+    public bool isInvincible = false;
 
     string motivationText = "Motivation: ";
     int score = 0;
@@ -17,13 +19,16 @@ public class PlayerManager : MonoBehaviour
     {
 
         ui.setMotivationText(motivationText + motivation);
-        Invoke("timer", 1);
+        if (!isInvincible)
+        {
+            Invoke("timer", 1);
+        }
     }
 
     void timer()
     {
         loseMotivation(10);
-        if (motivation > 0)
+        if (motivation > 0 && !isInvincible)
         {
             Invoke("timer", 1);
         }
@@ -36,18 +41,18 @@ public class PlayerManager : MonoBehaviour
         motivation += amount;
         ui.setMotivationText(motivationText + motivation);
         ui.updateMotivation(motivation, true);
-        sound.damagePitchOffset = motivation / 400f;
+        sound.damagePitchOffset = 0.5f - (motivation / 200f);
         sound.playSound("killEffect");
     }
 
     public void loseMotivation(float amount)
     {
-        if (!isBored)
+        if (!isBored && !isInvincible)
         {
             motivation -= amount;
             ui.setMotivationText(motivationText + motivation);
             ui.updateMotivation(motivation, false);
-            sound.damagePitchOffset = motivation / 400f;
+            sound.damagePitchOffset = 0.5f - (motivation / 200f);
             sound.playSound("damageEffect");
             if (motivation <= 0)
             {
@@ -62,6 +67,9 @@ public class PlayerManager : MonoBehaviour
     {
         ui.setMotivationText("Im bored, yall suck");
         isBored = true;
+        ui.showBoredMenu();
+        player.GetComponent<Animator>().SetBool("isBored", true);
+        sound.playMusic("boredBgMusic");
         //TODO make die
     }
 

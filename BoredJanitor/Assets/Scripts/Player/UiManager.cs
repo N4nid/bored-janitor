@@ -5,6 +5,7 @@ public class UiManager : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text motivationText;
     [SerializeField] Image motivationIndicator;
+    [SerializeField] Animator boredMenuAnim;
     [SerializeField] Sprite ball100;
     [SerializeField] Sprite ball80;
     [SerializeField] Sprite ball60;
@@ -13,11 +14,21 @@ public class UiManager : MonoBehaviour
     [SerializeField] Sprite ball0;
     [SerializeField] float biggerScaleChange = 0.5f;
     [SerializeField] float smallerScaleChange = 0.3f;
+    [SerializeField] Canvas ui;
+    public GameObject boredMenu;
+    public GameObject hud;
 
 
     void Start()
     {
+        hud = ui.gameObject.transform.Find("HUD").gameObject;
+        boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
+    }
 
+    public void showBoredMenu()
+    {
+        hud.SetActive(false);
+        boredMenuAnim.SetBool("fadeOut", false);
     }
 
     public void setMotivationText(string text)

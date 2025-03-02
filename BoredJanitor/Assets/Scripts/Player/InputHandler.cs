@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] PlayerManager playerManager;
     InputAction jumpAction;
     InputAction moveLeftAction;
     InputAction moveRightAction;
@@ -30,34 +31,38 @@ public class InputHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (jumpAction.IsPressed())
+        if (!playerManager.isBored)
         {
-            movement.jump();
-        }
-        if (moveRightAction.IsPressed())
-        {
-            movement.move(false);
-        }
-        if (moveLeftAction.IsPressed())
-        {
-            movement.move(true);
-        }
-        if (lightAttack.IsPressed())
-        {
-            playerAttackManager.LighthAttack();
-        }
-        if (heavyAttack.IsPressed())
-        {
-            playerAttackManager.HeavyAttack();
-        }
-        if (upAttack.IsPressed())
-        {
-            playerAttackManager.UpAttack();
-        }
-         if (downAttack.IsPressed())
-        {
-            playerAttackManager.DownAttack();
-        }
 
+            if (jumpAction.IsPressed())
+            {
+                movement.jump();
+            }
+            if (moveRightAction.IsPressed())
+            {
+                movement.move(false);
+            }
+            if (moveLeftAction.IsPressed())
+            {
+                movement.move(true);
+            }
+            if (lightAttack.IsPressed())
+            {
+                playerAttackManager.LighthAttack();
+            }
+            if (heavyAttack.IsPressed())
+            {
+                playerAttackManager.HeavyAttack();
+            }
+            if (upAttack.IsPressed())
+            {
+                playerAttackManager.UpAttack();
+            }
+            if (downAttack.IsPressed())
+            {
+                playerAttackManager.DownAttack();
+            }
+
+        }
     }
 }

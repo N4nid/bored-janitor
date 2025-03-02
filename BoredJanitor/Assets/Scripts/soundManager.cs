@@ -15,18 +15,46 @@ public class soundManager : MonoBehaviour
     [SerializeField] float broomHeavyVolume = 1f;
     [SerializeField] AudioClip fastBgMusic;
     [SerializeField] float fastBgMusicVolume = 1f;
+    [SerializeField] AudioClip boredBgMusic;
+    [SerializeField] float boredBgMusicVolume = 0.3f;
+    [SerializeField] AudioClip mainBgMusic;
+    [SerializeField] float mainBgMusicVolume = 0.3f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        playMusic(fastBgMusic, fastBgMusicVolume, true);
+        playMusic("fastBgMusic");
     }
 
-    public void playMusic(AudioClip audio, float volume, bool doLoop)
+    public void playMusic(string sound)
     {
-        music.loop = doLoop;
-        music.volume = volume;
-        music.clip = audio;
-        music.Play();
+        music.Stop();
+        AudioClip clip = null;
+        float volume = 1f;
+
+        switch (sound)
+        {
+            case "fastBgMusic":
+                volume = fastBgMusicVolume;
+                clip = fastBgMusic;
+                break;
+            case "boredBgMusic":
+                volume = boredBgMusicVolume;
+                clip = boredBgMusic;
+                break;
+            case "mainBgMusic":
+                volume = mainBgMusicVolume;
+                clip = mainBgMusic;
+                break;
+        }
+
+        if (clip != null)
+        {
+            music.loop = true;
+            music.volume = volume;
+            music.clip = clip;
+            music.Play();
+
+        }
 
     }
 
@@ -43,6 +71,7 @@ public class soundManager : MonoBehaviour
         {
             case "killEffect":
                 volume = killEffectVolume;
+                pitch = Random.Range(0.95f, 1.15f);
                 toPlay = killEffect;
                 break;
 
@@ -55,7 +84,7 @@ public class soundManager : MonoBehaviour
             case "BroomLight":
                 volume = broomLightVolume;
                 toPlay = broomLight;
-                pitch = Random.Range(0.8f, 1.1f);
+                pitch = Random.Range(0.9f, 1f);
                 break;
 
             case "BroomHeavy":
@@ -71,6 +100,7 @@ public class soundManager : MonoBehaviour
         if (toPlay != null)
         {
 
+            clonedSfx.pitch = pitch;
             clonedSfx.volume = volume;
             clonedSfx.PlayOneShot(toPlay);
             GameObject.Destroy(clonedSound, toPlay.length);
