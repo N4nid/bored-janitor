@@ -281,9 +281,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movemnet: {fileID: 6579197009845428222}
   maxSpeed: 6
+  dashDistX: 1
+  dashDistY: 0.7
   jumpDistX: 5
-  spotDistance: 10
-  spotFOV: 60
+  jumpDistY: 3
+  spotDistance: 15
+  spotFOV: 90
   width: 1.3
   height: 1.2
   roamingRadius: 8
