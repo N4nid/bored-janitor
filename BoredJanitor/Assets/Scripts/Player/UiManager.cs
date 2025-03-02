@@ -10,6 +10,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] Sprite ball60;
     [SerializeField] Sprite ball40;
     [SerializeField] Sprite ball20;
+    [SerializeField] Sprite ball0;
     [SerializeField] float biggerScaleChange = 0.5f;
     [SerializeField] float smallerScaleChange = 0.3f;
 
@@ -60,8 +61,11 @@ public class UiManager : MonoBehaviour
             case > 20f:
                 motivationIndicator.overrideSprite = ball40;
                 break;
-            case >= 0f:
+            case > 0f:
                 motivationIndicator.overrideSprite = ball20;
+                break;
+            case <= 0f:
+                motivationIndicator.overrideSprite = ball0;
                 break;
 
             default:
