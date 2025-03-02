@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 163.59679, y: 0}
+  m_AnchoredPosition: {x: 71.4, y: 0}
   m_SizeDelta: {x: 130.7936, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6521682603768032588
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Messgae
+  m_text: 'N:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
   m_sharedMaterial: {fileID: -8277296183043710215, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 53.77498, y: 0}
+  m_AnchoredPosition: {x: 53.774918, y: 0}
   m_SizeDelta: {x: 88.85, y: 34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4914375561368269827
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Name:'
+  m_text: 'N:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
   m_sharedMaterial: {fileID: -8277296183043710215, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: -5.05
   m_wordSpacing: 0
@@ -301,8 +301,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3080971883412097460}
   - {fileID: 5402466774679087095}
+  - {fileID: 3080971883412097460}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -324,5 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usernameTextObj: {fileID: 6662268277104832114}
   messageTextObj: {fileID: 2558562134131812779}
-  charWidth: 19
+  charWidth: 16
+  maxWidth: 475
   xOffset: 5
+  lineCount: 0

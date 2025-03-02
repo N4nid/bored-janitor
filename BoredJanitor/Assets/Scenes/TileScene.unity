@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.08627451}
+  m_Color: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 0.46666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1989,9 +1989,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatMessagePrefab: {fileID: 7163721771945604522, guid: 79a7b9cd3d265fee29bbc57c2ecd14f4, type: 3}
   chatView: {fileID: 1139854835}
-  xMargin: 245
-  startY: 30
-  yIncrement: 50
+  maxWidth: 470
+  xMargin: 2
+  startY: -140
+  yIncrement: 30
+  viewHeight: 300
 --- !u!1001 &1322898204
 PrefabInstance:
   m_ObjectHideFlags: 0
