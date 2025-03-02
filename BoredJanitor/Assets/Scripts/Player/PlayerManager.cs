@@ -52,6 +52,21 @@ public class PlayerManager : MonoBehaviour
         //TODO make die
     }
 
+    void finish()
+    {
+        //TODO make finish
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Finish"))
+        {
+            Debug.Log(collision.gameObject.name);
+            finish();
+
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
