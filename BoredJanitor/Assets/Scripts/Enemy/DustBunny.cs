@@ -6,7 +6,7 @@ public class DustBunny : MonoBehaviour
 {
     [SerializeField] float spotDistance = 10f;
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] Transform player;
+    Transform player;
     [SerializeField] float maxSpeed = 4;
     [SerializeField] float accelaration = 300;
     [SerializeField] float angularAcccelaration = 1000;
@@ -24,13 +24,14 @@ public class DustBunny : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         roamLowerY = transform.position.y - 0.1f;
         roamHigherY = roamLowerY + roamHeight;
     }
 
     void Update()
     {
-        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12) || hasSeenPlayer) {
+        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12)) {
            if (!hasSeenPlayer) {
             rb.AddForceY(-rb.linearVelocityY * 40);
            }
@@ -57,8 +58,9 @@ public class DustBunny : MonoBehaviour
     }
     
     void goToPlayer() {
-        Vector2 lookAtVector = player.position - transform.position;
-        float distanceToPlayer = Vector2.Distance(player.position,transform.position);
+        Vector3 playerPos = player.transform.position + new Vector3(0f,2.5f,0f);
+        Vector2 lookAtVector = playerPos - transform.position;
+        float distanceToPlayer = Vector2.Distance(playerPos,transform.position);
         rotateToDirec(Vector2.Angle(Vector2.left,lookAtVector));
         if (distanceToPlayer > playerDistanceThreshhold) {
             moveInDirec(lookAtVector,maxSpeed,accelaration);
@@ -106,7 +108,7 @@ public class DustBunny : MonoBehaviour
         }
         else {
             direction = -1f;
-            transform.localScale = new Vector2(-Math.Abs(transform.localScale.x),-Math.Abs(transform.localScale.y));
+            transform.localScale = new Vector2(-Math.Abs(transform.localScale.x),Math.Abs(transform.localScale.y));
         }
     }
 
