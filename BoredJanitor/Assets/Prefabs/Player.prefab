@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 1491029575215202709}
   - component: {fileID: 8054896925574662226}
   - component: {fileID: 2482747895211573948}
+  - component: {fileID: 6115170708276940949}
+  - component: {fileID: 7490180594943637162}
   - component: {fileID: 5943998980229648529}
   - component: {fileID: 8096017108684669631}
   - component: {fileID: 5367057708323902602}
-  - component: {fileID: 7490180594943637162}
   - component: {fileID: 1673870096913440469}
   - component: {fileID: 8797269975965122912}
   - component: {fileID: 6524544254801986854}
@@ -111,11 +112,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motivationText: {fileID: 0}
   motivationIndicator: {fileID: 0}
-  ball100: {fileID: -3603556060819865620, guid: c2b3cdbac1b72f3a7b642457b17d0068, type: 3}
-  ball80: {fileID: 7826395881470743827, guid: c2b3cdbac1b72f3a7b642457b17d0068, type: 3}
-  ball60: {fileID: 5641732428763174162, guid: c2b3cdbac1b72f3a7b642457b17d0068, type: 3}
-  ball40: {fileID: -2809790316608957549, guid: c2b3cdbac1b72f3a7b642457b17d0068, type: 3}
-  ball20: {fileID: 4121045027123494526, guid: c2b3cdbac1b72f3a7b642457b17d0068, type: 3}
+  ball100: {fileID: -3603556060819865620, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
+  ball80: {fileID: 7826395881470743827, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
+  ball60: {fileID: 5641732428763174162, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
+  ball40: {fileID: -2809790316608957549, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
+  ball20: {fileID: 4121045027123494526, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
+  ball0: {fileID: 487225773713915244, guid: b3d87dc221730d9ea8623d88dcb731eb, type: 3}
   biggerScaleChange: 0.5
   smallerScaleChange: 0.3
 --- !u!114 &2482747895211573948
@@ -133,10 +135,45 @@ MonoBehaviour:
   player: {fileID: 8731945236726430784}
   motivation: 100
   ui: {fileID: 8054896925574662226}
+  sound: {fileID: 6115170708276940949}
+  killCounter: 0
+--- !u!114 &6115170708276940949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731945236726430784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87190d7af4365f59977f791c18d5fcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   sound: {fileID: 6524544254801986854}
   killEffect: {fileID: 8300000, guid: 00522dcfd46418540b12b68c020d3de9, type: 3}
-  lightAttackSFX: {fileID: 0}
-  killCounter: 0
+  killEffectVolume: 1.5
+  damageEffect: {fileID: 8300000, guid: 7176e4d87b6ed3144bc4a32e87f2b857, type: 3}
+  damageEffectVolume: 0.9
+  broomLight: {fileID: 8300000, guid: fbdc8c3a10c1297829a374442b355829, type: 3}
+  broomLightVolume: 1
+  broomHeavy: {fileID: 8300000, guid: efd6cac8f04e90f8ea9ccb7ce497bddf, type: 3}
+  broomHeavyVolume: 0.6
+--- !u!114 &7490180594943637162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731945236726430784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0edcee7088492478212f8cc239360a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8797269975965122912}
+  attacks: {fileID: 8096017108684669631}
+  sound: {fileID: 6115170708276940949}
+  weaponIndex: 0
 --- !u!114 &5943998980229648529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,21 +227,6 @@ MonoBehaviour:
   test: 0.3
   onGround: 1
   canDoPullUp: 1
---- !u!114 &7490180594943637162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8731945236726430784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b0edcee7088492478212f8cc239360a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8797269975965122912}
-  attacks: {fileID: 8096017108684669631}
-  weaponIndex: 0
 --- !u!50 &1673870096913440469
 Rigidbody2D:
   serializedVersion: 5

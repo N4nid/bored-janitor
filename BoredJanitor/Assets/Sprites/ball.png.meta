@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c2b3cdbac1b72f3a7b642457b17d0068
+guid: b3d87dc221730d9ea8623d88dcb731eb
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: 4121045027123494526
     second: ball_4
+  - first:
+      213: 487225773713915244
+    second: ball_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -234,6 +237,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: ball_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 0
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6df1af7249f2c600800000000000000
+      internalID: 487225773713915244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -253,6 +278,7 @@ TextureImporter:
       ball_2: 5641732428763174162
       ball_3: -2809790316608957549
       ball_4: 4121045027123494526
+      ball_5: 487225773713915244
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
