@@ -8,13 +8,10 @@ public class Turtle : MonoBehaviour
     Transform player;
     [SerializeField] Movement movemnet;
     [SerializeField] float maxSpeed = 10;
-    [SerializeField] float dashDistX = 1f;
-    [SerializeField] float dashDistY = 0.7f;
     [SerializeField] float jumpDistX = 3.5f;
-    [SerializeField] float jumpDistY = 3f;
 
-    [SerializeField] float spotDistance = 10f;
-    [SerializeField] float spotFOV = 60;
+    [SerializeField] float spotDistance = 20f;
+    [SerializeField] float spotFOV = 90;
     [SerializeField] float width = 1.2f;
     [SerializeField] float height = 1.2f;
     [SerializeField] float roamingRadius = 4f;
@@ -71,23 +68,19 @@ public class Turtle : MonoBehaviour
         float distX = Math.Abs(player.position.x - transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
         //Debug.Log(distY);
-        if (distX < jumpDistX && distY > dashDistY && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.2f && !isJumping)
+        if (distX < jumpDistX && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.4f && !isJumping)
         {
             isJumping = true;
             movemnet.jump(jumpForce);
             Invoke("resetJump", 0.3f);
             //Debug.Log("Jump");
         }
-        if (distX > dashDistX || distY > dashDistY)
+        else
         {
             movemnet.move(maxSpeed, isFacingRight);
             //Debug.Log("moving");
         }
-        else
-        {
-            // Debug.Log("Dahsing now"); // Dashed hier
-        }
-    }
+    }   
 
     void resetJump()
     {

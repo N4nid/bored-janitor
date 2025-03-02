@@ -100,10 +100,9 @@ GameObject:
   - component: {fileID: 6579197009845428222}
   - component: {fileID: 5946252392417698098}
   - component: {fileID: 8195533359918762509}
-  - component: {fileID: 4505678602422354434}
   - component: {fileID: 849234459736651627}
   m_Layer: 0
-  m_Name: Turtle
+  m_Name: BurgerSpinne
   m_TagString: Enimy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2235f4ef9d00042b7b2dc900ea9d1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelaration: 500
+  accelaration: 300
   rb: {fileID: 5946252392417698098}
 --- !u!50 &5946252392417698098
 Rigidbody2D:
@@ -267,27 +266,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4505678602422354434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1627949066636546331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a493e48e41268accd84599806a89cac5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movemnet: {fileID: 6579197009845428222}
-  maxSpeed: 6
-  jumpDistX: 5
-  spotDistance: 10
-  spotFOV: 60
-  width: 1.3
-  height: 1.2
-  roamingRadius: 8
-  jumpForce: 500
 --- !u!114 &849234459736651627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,8 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60997904d22c6df0c9b5ea373ccc64f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 75
-  enemyDamage: 20
+  health: 100
   knockbackMultplyer: 5
 --- !u!1 &6488516785246058610
 GameObject:
