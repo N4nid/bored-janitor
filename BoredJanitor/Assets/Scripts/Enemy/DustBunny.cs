@@ -14,7 +14,6 @@ public class DustBunny : MonoBehaviour
 
     [SerializeField] float roamHeight = 4;
     [SerializeField] float playerDistanceThreshhold = 0.2f;
-    [SerializeField] float health = 50f;
     [SerializeField] EnemyMangager mangager;
     float direction = 1f;
     bool isMovingUp = true;
