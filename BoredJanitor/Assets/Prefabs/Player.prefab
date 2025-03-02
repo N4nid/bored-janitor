@@ -300,7 +300,7 @@ MonoBehaviour:
   killEffect: {fileID: 8300000, guid: 00522dcfd46418540b12b68c020d3de9, type: 3}
   killEffectVolume: 1.8
   damageEffect: {fileID: 8300000, guid: 7176e4d87b6ed3144bc4a32e87f2b857, type: 3}
-  damageEffectVolume: 1.5
+  damageEffectVolume: 2
   broomLight: {fileID: 8300000, guid: fbdc8c3a10c1297829a374442b355829, type: 3}
   broomLightVolume: 0.9
   broomHeavy: {fileID: 8300000, guid: efd6cac8f04e90f8ea9ccb7ce497bddf, type: 3}

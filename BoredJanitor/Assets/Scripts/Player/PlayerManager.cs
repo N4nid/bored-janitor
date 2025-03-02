@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public float motivation = 100; // acts as Health
     [SerializeField] UiManager ui;
     [SerializeField] soundManager sound;
+    public bool isBored = false;
 
     string motivationText = "Motivation: ";
     int score = 0;
@@ -35,18 +36,24 @@ public class PlayerManager : MonoBehaviour
         motivation += amount;
         ui.setMotivationText(motivationText + motivation);
         ui.updateMotivation(motivation, true);
+        sound.damagePitchOffset = motivation / 400f;
         sound.playSound("killEffect");
     }
 
     public void loseMotivation(float amount)
     {
-        motivation -= amount;
-        ui.setMotivationText(motivationText + motivation);
-        ui.updateMotivation(motivation, false);
-        sound.playSound("damageEffect");
-        if (motivation <= 0)
+        if (!isBored)
         {
-            becomeBored();
+            motivation -= amount;
+            ui.setMotivationText(motivationText + motivation);
+            ui.updateMotivation(motivation, false);
+            sound.damagePitchOffset = motivation / 400f;
+            sound.playSound("damageEffect");
+            if (motivation <= 0)
+            {
+                becomeBored();
+            }
+
         }
 
     }
@@ -54,6 +61,7 @@ public class PlayerManager : MonoBehaviour
     void becomeBored()
     {
         ui.setMotivationText("Im bored, yall suck");
+        isBored = true;
         //TODO make die
     }
 

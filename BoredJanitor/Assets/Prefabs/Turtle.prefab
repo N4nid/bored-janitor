@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 75
+  enemyDamage: 20
   knockbackMultplyer: 5
 --- !u!1 &6488516785246058610
 GameObject:
