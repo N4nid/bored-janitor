@@ -4,7 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject player;
-    [SerializeField] float motivation = 100; // acts as Health
+    public float motivation = 100; // acts as Health
     [SerializeField] UiManager ui;
     [SerializeField] soundManager sound;
 
