@@ -14,6 +14,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] float biggerScaleChange = 0.5f;
     [SerializeField] float smallerScaleChange = 0.3f;
 
+
     void Start()
     {
 
@@ -21,7 +22,9 @@ public class UiManager : MonoBehaviour
 
     public void setMotivationText(string text)
     {
-        motivationText.SetText(text);
+        if (motivationText != null) {
+             motivationText.SetText(text);
+        }
     }
 
     public void makeBigger()
@@ -35,6 +38,7 @@ public class UiManager : MonoBehaviour
 
     public void updateMotivation(float motivation, bool bigger)
     {
+        if (motivationText != null) {
         if (bigger)
         {
             Invoke("makeSmaller", 0.3f);
@@ -71,6 +75,7 @@ public class UiManager : MonoBehaviour
             default:
                 motivationIndicator.overrideSprite = ball100;
                 break;
+        }
         }
     }
 

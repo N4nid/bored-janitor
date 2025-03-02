@@ -5,6 +5,7 @@ public class EnemyMangager : MonoBehaviour
     [SerializeField] float health = 100f;
     [SerializeField] float enemyDamage = 10f;
     [SerializeField] float knockbackMultplyer = 10f;
+    //[SerializeField] bool isBox = false;
     GameObject player;
     Rigidbody2D rb;
     PlayerManager playerManager;
