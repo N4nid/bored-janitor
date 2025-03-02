@@ -152,9 +152,8 @@ MonoBehaviour:
   accelaration: 300
   angularAcccelaration: 1000
   maxAngularSpeed: 10
-  roamHeight: 4
+  roamHeight: 2
   playerDistanceThreshhold: 0.5
-  health: 50
   mangager: {fileID: -2745031961206371074}
 --- !u!114 &-2745031961206371074
 MonoBehaviour:

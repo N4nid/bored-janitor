@@ -20,17 +20,19 @@ public class DustBunny : MonoBehaviour
     float roamLowerY;
     float roamHigherY;
     bool hasSeenPlayer;
+    Vector2 defaultSize;
 
     void Start()
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
         roamLowerY = transform.position.y - 0.1f;
         roamHigherY = roamLowerY + roamHeight;
+        defaultSize = transform.localScale;
     }
 
     void Update()
     {
-        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12)) {
+        if (canSeePlayer(transform.position,transform.rotation * Vector2.right * direction,50f,12)|| hasSeenPlayer) {
            if (!hasSeenPlayer) {
             rb.AddForceY(-rb.linearVelocityY * 40);
            }
@@ -60,7 +62,7 @@ public class DustBunny : MonoBehaviour
         Vector3 playerPos = player.transform.position + new Vector3(0f,2.5f,0f);
         Vector2 lookAtVector = playerPos - transform.position;
         float distanceToPlayer = Vector2.Distance(playerPos,transform.position);
-        rotateToDirec(Vector2.Angle(Vector2.left,lookAtVector));
+        rotateToDirec(Vector2.Angle(Vector2.left,lookAtVector*direction * -1));
         if (distanceToPlayer > playerDistanceThreshhold) {
             moveInDirec(lookAtVector,maxSpeed,accelaration);
         }
