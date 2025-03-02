@@ -33,10 +33,15 @@ public class PlayerManager : MonoBehaviour
 
     public void gainMotivation(float amount)
     {
+        if (isBored)
+        { // XXX DEBUG DELETE ME
+            Invoke("timer", 1);
+            isBored = false;
+        }
         motivation += amount;
         ui.setMotivationText(motivationText + motivation);
         ui.updateMotivation(motivation, true);
-        sound.damagePitchOffset = motivation / 400f;
+        sound.damagePitchOffset = 0.5f - (motivation / 200f);
         sound.playSound("killEffect");
     }
 
@@ -47,7 +52,7 @@ public class PlayerManager : MonoBehaviour
             motivation -= amount;
             ui.setMotivationText(motivationText + motivation);
             ui.updateMotivation(motivation, false);
-            sound.damagePitchOffset = motivation / 400f;
+            sound.damagePitchOffset = 0.5f - (motivation / 200f);
             sound.playSound("damageEffect");
             if (motivation <= 0)
             {

@@ -43,6 +43,7 @@ public class soundManager : MonoBehaviour
         {
             case "killEffect":
                 volume = killEffectVolume;
+                pitch = Random.Range(0.95f, 1.15f);
                 toPlay = killEffect;
                 break;
 
@@ -55,7 +56,7 @@ public class soundManager : MonoBehaviour
             case "BroomLight":
                 volume = broomLightVolume;
                 toPlay = broomLight;
-                pitch = Random.Range(0.8f, 1.1f);
+                pitch = Random.Range(0.9f, 1f);
                 break;
 
             case "BroomHeavy":
@@ -71,6 +72,7 @@ public class soundManager : MonoBehaviour
         if (toPlay != null)
         {
 
+            clonedSfx.pitch = pitch;
             clonedSfx.volume = volume;
             clonedSfx.PlayOneShot(toPlay);
             GameObject.Destroy(clonedSound, toPlay.length);

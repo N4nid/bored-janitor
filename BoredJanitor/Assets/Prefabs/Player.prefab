@@ -266,6 +266,7 @@ MonoBehaviour:
   motivation: 100
   ui: {fileID: 8054896925574662226}
   sound: {fileID: 1124395345051198332}
+  isBored: 0
   killCounter: 0
 --- !u!114 &7490180594943637162
 MonoBehaviour:
@@ -301,8 +302,9 @@ MonoBehaviour:
   killEffectVolume: 1.8
   damageEffect: {fileID: 8300000, guid: 7176e4d87b6ed3144bc4a32e87f2b857, type: 3}
   damageEffectVolume: 2
+  damagePitchOffset: 0
   broomLight: {fileID: 8300000, guid: fbdc8c3a10c1297829a374442b355829, type: 3}
-  broomLightVolume: 0.9
+  broomLightVolume: 0.7
   broomHeavy: {fileID: 8300000, guid: efd6cac8f04e90f8ea9ccb7ce497bddf, type: 3}
   broomHeavyVolume: 0.5
   fastBgMusic: {fileID: 8300000, guid: 36ba3902270438301b74f1708c126a23, type: 3}
@@ -443,8 +445,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 1.81}
-  m_Size: {x: 1.14, y: 3.09}
+  m_Offset: {x: 0, y: 1.703217}
+  m_Size: {x: 1.14, y: 3.303566}
   m_Direction: 0
 --- !u!82 &2285515391598141077
 AudioSource:

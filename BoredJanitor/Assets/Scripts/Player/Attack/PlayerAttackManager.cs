@@ -60,7 +60,6 @@ public class PlayerAttackManager : MonoBehaviour
     public void createHeavyHitbox()
     {
         attacks.CreateHitbox(0, 1);
-        Debug.Log("Me HeavyAttack :D");
     }
 
     public void HeavyAttack()

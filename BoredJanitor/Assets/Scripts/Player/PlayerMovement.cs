@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if (canDoPullUp && body.linearVelocityY <= 0)
         {
             //body.AddForceY(pullUpForce, ForceMode2D.Impulse);
+            Debug.Log("LEDGE BOOST");
             body.AddForce(new Vector2(pullUpForce * direction * pullupFactor, pullUpForce), ForceMode2D.Impulse);
         }
         else if (onGround && !isJumping)
