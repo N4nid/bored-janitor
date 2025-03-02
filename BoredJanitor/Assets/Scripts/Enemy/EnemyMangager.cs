@@ -3,13 +3,16 @@ using UnityEngine;
 public class EnemyMangager : MonoBehaviour
 {
     [SerializeField] float health = 100f;
+    [SerializeField] float enemyDamage = 10f;
     [SerializeField] float knockbackMultplyer = 10f;
     GameObject player;
     Rigidbody2D rb;
+    PlayerManager playerManager;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        playerManager = player.GetComponent<PlayerManager>();
     }
 
     public void damage(float damageAmount, float comingFromX)
@@ -20,9 +23,23 @@ public class EnemyMangager : MonoBehaviour
         rb.AddForceX(damageAmount * knockbackDirection * knockbackMultplyer);
         if (health <= 0)
         {
-            player.GetComponent<PlayerManager>().gainMotivation(20f);
-            player.GetComponent<PlayerManager>().killCounter++;
+            playerManager.gainMotivation(20f);
+            playerManager.killCounter++;
             Destroy(gameObject);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.Equals("Player"))
+        {
+
+            if (!playerManager.isBored)
+            {
+                playerManager.loseMotivation(enemyDamage);
+            }
+            Debug.Log("HIT YOU ");
+
         }
     }
 

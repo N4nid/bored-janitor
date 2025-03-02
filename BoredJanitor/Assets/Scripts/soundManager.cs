@@ -8,6 +8,7 @@ public class soundManager : MonoBehaviour
     [SerializeField] float killEffectVolume = 1f;
     [SerializeField] AudioClip damageEffect;
     [SerializeField] float damageEffectVolume = 1f;
+    public float damagePitchOffset = 0f;
     [SerializeField] AudioClip broomLight;
     [SerializeField] float broomLightVolume = 1f;
     [SerializeField] AudioClip broomHeavy;
@@ -32,9 +33,11 @@ public class soundManager : MonoBehaviour
     public void playSound(string sound)
     {
         GameObject clonedSound = GameObject.Instantiate(sfx.gameObject);
+        clonedSound.name = "sfx:" + sound;
         AudioSource clonedSfx = clonedSound.GetComponent<AudioSource>();
         AudioClip toPlay = null;
         float volume = 1f;
+        float pitch = 1f;
 
         switch (sound)
         {
@@ -46,16 +49,19 @@ public class soundManager : MonoBehaviour
             case "damageEffect":
                 volume = damageEffectVolume;
                 toPlay = damageEffect;
+                pitch = 1f - damagePitchOffset;
                 break;
 
             case "BroomLight":
                 volume = broomLightVolume;
                 toPlay = broomLight;
+                pitch = Random.Range(0.8f, 1.1f);
                 break;
 
             case "BroomHeavy":
                 volume = broomHeavyVolume;
                 toPlay = broomHeavy;
+                pitch = Random.Range(0.8f, 1.1f);
                 break;
 
             default:
