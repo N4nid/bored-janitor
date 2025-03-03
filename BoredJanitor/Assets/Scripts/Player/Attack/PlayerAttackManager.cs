@@ -34,7 +34,7 @@ public class PlayerAttackManager : MonoBehaviour
         return "Shovel";
     }
 
-    void SwapWeapons()
+    public void SwapWeapons()
     {
         weaponIndex = (weaponIndex == 1) ? 0 : 1;
         animator.SetInteger("weaponIndex", weaponIndex);
@@ -55,6 +55,14 @@ public class PlayerAttackManager : MonoBehaviour
     public void HeavyAttack()
     {
         animator.SetInteger("attacktype", 2);
+        if (weaponIndex == 1) {
+                Invoke("resetAttackType",0.3f);
+        }
+
+    }
+
+    void resetAttackType() {
+        animator.SetInteger("attacktype", 0);
     }
 
     public void createLightHitbox()

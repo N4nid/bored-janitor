@@ -36,6 +36,7 @@ public class Hitbox : MonoBehaviour
                     collision.gameObject.GetComponent<EnemyMangager>().damage(35,playerTrans.position.x);
                 }
                 if (attackIndex == 1) {
+                    Debug.Log(collision.gameObject.name);
                     collision.gameObject.GetComponent<EnemyMangager>().damage(50,playerTrans.position.x);
                     body.AddForceY(-body.linearVelocityY * 40);
                     body.AddForceY(1500);

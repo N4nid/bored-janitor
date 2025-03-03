@@ -11,7 +11,7 @@
                     "id": "6c2ab1b8-8984-453a-af3d-a3c78ae1679a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -74,7 +74,16 @@
                     "id": "d284b99f-7fec-46e2-be01-0ef79ded304a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "changeWeapon",
+                    "type": "Button",
+                    "id": "43fd5cb4-88da-4325-a08b-729aa0d28edd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 }
             ],
@@ -230,6 +239,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "heavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d894ee6e-9aeb-40e1-8db6-34ed5c1c4b19",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "changeWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
