@@ -9,12 +9,12 @@ public class DustBunny : MonoBehaviour
     Transform player;
     [SerializeField] float maxSpeed = 4;
     [SerializeField] float accelaration = 300;
-    [SerializeField] float angularAcccelaration = 1000;
-    [SerializeField] float maxAngularSpeed = 10;
+    //[SerializeField] float angularAcccelaration = 1000;
+    //[SerializeField] float maxAngularSpeed = 10;
 
     [SerializeField] float roamHeight = 4;
     [SerializeField] float playerDistanceThreshhold = 0.2f;
-    [SerializeField] EnemyMangager mangager;
+    //[SerializeField] EnemyMangager mangager;
     float direction = 1f;
     bool isMovingUp = true;
     float roamLowerY;

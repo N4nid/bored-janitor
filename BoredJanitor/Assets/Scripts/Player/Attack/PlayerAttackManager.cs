@@ -7,17 +7,18 @@ using System.Collections;
 public class PlayerAttackManager : MonoBehaviour
 {
     public Animator animator;
-    ArrayList obtainedWeapons = new ArrayList();
     [SerializeField] PlayerAttacks attacks;
     [SerializeField] soundManager sound;
     public int weaponIndex = 0;
+    int obtainedWeapons = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CollectWeapon("Broom");
+        CollectWeapon(1);
 
     }
 
+    
 
     public void endAttacking()
     {
@@ -25,27 +26,25 @@ public class PlayerAttackManager : MonoBehaviour
         animator.SetInteger("attacktype", 0);
     }
 
+    public String getWeapon()
+    {
+        if (weaponIndex == 1){
+            return "Broom";
+        }
+        return "Shovel";
+    }
+
     void SwapWeapons()
     {
-        if (weaponIndex < obtainedWeapons.Count - 1)
-        {
-            weaponIndex++;
-        }
-        else
-        {
-            weaponIndex = 0;
-        }
+        weaponIndex = (weaponIndex == 1) ? 0 : 1;
+        animator.SetInteger("weaponIndex", weaponIndex);
     }
 
-    void CollectWeapon(String weapon)
+    void CollectWeapon(int count)
     {
-        obtainedWeapons.Add(weapon);
+        obtainedWeapons += count;
     }
 
-    String getWeapon()
-    {
-        return (String)obtainedWeapons[weaponIndex];
-    }
 
     public void LighthAttack()
     {
@@ -53,28 +52,18 @@ public class PlayerAttackManager : MonoBehaviour
         //attacks.CreateHitbox(0,0);
     }
 
-    public void createLightHitbox()
-    {
-        attacks.CreateHitbox(0, 0);
-    }
-    public void createHeavyHitbox()
-    {
-        attacks.CreateHitbox(0, 1);
-        Debug.Log("Me HeavyAttack :D");
-    }
-
     public void HeavyAttack()
     {
         animator.SetInteger("attacktype", 2);
-        //attacks.CreateHitbox(0,1);
     }
-    public void DownAttack()
+
+    public void createLightHitbox()
     {
-        animator.SetInteger("attacktype", 3);
+        attacks.CreateHitbox(weaponIndex, 0);
     }
-    public void UpAttack()
+    public void createHeavyHitbox()
     {
-        animator.SetInteger("attacktype", 4);
+        attacks.CreateHitbox(weaponIndex, 1);
     }
 
     public void playLightAttackSFX()

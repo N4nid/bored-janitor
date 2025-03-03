@@ -1,10 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Hitbox : MonoBehaviour
 {
     List<GameObject> hittedObjects = new List<GameObject>();
+    Rigidbody2D body;
     public float lifeTime = 100;
     public int attackIndex;
     public int weaponIndex;
@@ -12,9 +16,8 @@ public class Hitbox : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        body = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag .Equals("Enimy") && !containsGameObj(hittedObjects,collision.gameObject)) {
@@ -24,7 +27,20 @@ public class Hitbox : MonoBehaviour
                 }
                 if (attackIndex == 1) {
                     collision.gameObject.GetComponent<EnemyMangager>().damage(50,playerTrans.position.x);
+                    
                 }
+            }
+            else
+            {
+              if (attackIndex == 0) {
+                    collision.gameObject.GetComponent<EnemyMangager>().damage(35,playerTrans.position.x);
+                }
+                if (attackIndex == 1) {
+                    collision.gameObject.GetComponent<EnemyMangager>().damage(50,playerTrans.position.x);
+                    body.AddForceY(-body.linearVelocityY * 40);
+                    body.AddForceY(1500);
+                    Debug.Log(body.linearVelocityY);
+                }  
             }
             hittedObjects.Add(collision.gameObject);
         }

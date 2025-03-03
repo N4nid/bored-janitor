@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public bool isBored = false;
 
     string motivationText = "Motivation: ";
-    int score = 0;
+    //int score = 0;
     public int killCounter = 0; // changed in Eneymmanager
 
     void Start()

@@ -9,22 +9,18 @@ public class InputHandler : MonoBehaviour
     InputAction moveRightAction;
     InputAction heavyAttack;
     InputAction lightAttack;
-    InputAction upAttack;
-    InputAction downAttack;
     [SerializeField] PlayerMovement movement;
     [SerializeField] PlayerAttackManager playerAttackManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Started");
+        //Debug.Log("Started");
         jumpAction = InputSystem.actions.FindAction("jump");
         moveLeftAction = InputSystem.actions.FindAction("moveLeft");
         moveRightAction = InputSystem.actions.FindAction("moveRight");
         lightAttack = InputSystem.actions.FindAction("lightAttack");
         heavyAttack = InputSystem.actions.FindAction("heavyAttack");
-        upAttack = InputSystem.actions.FindAction("upAttack");
-        downAttack = InputSystem.actions.FindAction("downAttack");
-        Debug.Log("Actions: " + moveRightAction + "|" + moveLeftAction + "|" + jumpAction);
+        //Debug.Log("Actions: " + moveRightAction + "|" + moveLeftAction + "|" + jumpAction);
     }
 
     // Update is called once per frame
@@ -49,14 +45,6 @@ public class InputHandler : MonoBehaviour
         if (heavyAttack.IsPressed())
         {
             playerAttackManager.HeavyAttack();
-        }
-        if (upAttack.IsPressed())
-        {
-            playerAttackManager.UpAttack();
-        }
-         if (downAttack.IsPressed())
-        {
-            playerAttackManager.DownAttack();
         }
 
     }

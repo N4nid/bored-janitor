@@ -1239,7 +1239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.5128593
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1296,7 +1296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.1810894
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1418,7 +1418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.25
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1989,7 +1989,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chatMessagePrefab: {fileID: 7163721771945604522, guid: 79a7b9cd3d265fee29bbc57c2ecd14f4, type: 3}
   chatView: {fileID: 1139854835}
-  maxWidth: 470
   xMargin: 2
   startY: -140
   yIncrement: 30
@@ -2020,7 +2019,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.8308926
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2057,6 +2056,10 @@ PrefabInstance:
     - target: {fileID: 3938596924087108650, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_Name
       value: DustBunny (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938596924087108650, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2237,7 +2240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.741193
+      value: -999
       objectReference: {fileID: 0}
     - target: {fileID: 1391600231916337967, guid: ee493ac515fbfe1cd9505d472a88feaf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2292,13 +2295,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Turtle (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1627949066636546331, guid: b0f5ea17fc4c45802bdf6522daf4c16d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2661311138128693477, guid: b0f5ea17fc4c45802bdf6522daf4c16d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.46
+      value: 1.89
       objectReference: {fileID: 0}
     - target: {fileID: 2661311138128693477, guid: b0f5ea17fc4c45802bdf6522daf4c16d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.79
+      value: -1.49
       objectReference: {fileID: 0}
     - target: {fileID: 2661311138128693477, guid: b0f5ea17fc4c45802bdf6522daf4c16d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2603,6 +2610,10 @@ PrefabInstance:
     - target: {fileID: 4639683675919331400, guid: 9eebd6f29b81b7945af9b90243fa34bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490180594943637162, guid: 9eebd6f29b81b7945af9b90243fa34bd, type: 3}
+      propertyPath: weaponIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8054896925574662226, guid: 9eebd6f29b81b7945af9b90243fa34bd, type: 3}
       propertyPath: motivationText
