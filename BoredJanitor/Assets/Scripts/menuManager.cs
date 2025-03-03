@@ -14,15 +14,24 @@ public class menuManager : MonoBehaviour
     }
     public void showBoredMenu()
     {
+        Debug.Log("IF boredMENU NOT there look in boredMenuImg in player");
         boredMenu.SetActive(true);
         string comment = meanComments[Random.Range(0, meanComments.Length - 1)];
         boredMenuMeanComment.SetText(comment);
+    }
+    public void goToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void quit()
+    {
+        Application.Quit();
     }
 
     public void reloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Debug.Log("YOOO shouldnt see this");
     }
 
     // Update is called once per frame

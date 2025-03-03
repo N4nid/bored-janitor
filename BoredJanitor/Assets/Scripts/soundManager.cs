@@ -5,6 +5,7 @@ public class soundManager : MonoBehaviour
     [SerializeField] AudioSource sfx;
     [SerializeField] AudioSource music;
     [SerializeField] AudioClip killEffect;
+    [SerializeField] string startMusic = "fastBgMusic";
     [SerializeField] float killEffectVolume = 1f;
     [SerializeField] AudioClip damageEffect;
     [SerializeField] float damageEffectVolume = 1f;
@@ -22,7 +23,7 @@ public class soundManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        playMusic("fastBgMusic");
+        playMusic(startMusic);
     }
 
     public void playMusic(string sound)
