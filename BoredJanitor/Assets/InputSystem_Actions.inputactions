@@ -76,24 +76,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "upAttack",
-                    "type": "Button",
-                    "id": "1f4380b2-194c-4cfb-b3c2-4588291844a7",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "downAttack",
-                    "type": "Button",
-                    "id": "2d19649b-8043-4441-903e-a34731a1e510",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -209,8 +191,30 @@
                 },
                 {
                     "name": "",
+                    "id": "36bc0655-83a0-4b65-bef2-f59bef54c1f7",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "moveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "63ce20b4-33d1-4f27-8900-ee12b72206d7",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "moveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e16a0c95-e96a-47e0-bb55-9d2f7a181b83",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -226,28 +230,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "heavyAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4930218e-2454-4050-ab15-878877b942d9",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "upAttack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9d2a9115-3a59-4098-a12b-2ec5cb79a1af",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "downAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
