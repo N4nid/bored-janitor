@@ -4,8 +4,10 @@ public class PlayerManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject player;
+    [SerializeField] int LevelToUnlock;
     public float motivation = 100; // acts as Health
     [SerializeField] UiManager ui;
+    [SerializeField] GameObject thanks;
     [SerializeField] soundManager sound;
     [SerializeField] Vector3 spawnPoint = new Vector3(0, 0, 0);
     public bool isBored = false;
@@ -27,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     public void timer()
     {
-        loseMotivation(5);
+        loseMotivation(3);
         if (motivation > 0 && !isInvincible)
         {
             Invoke("timer", 1);
@@ -75,7 +77,10 @@ public class PlayerManager : MonoBehaviour
 
     void finish()
     {
-        //set animation state
+        if (LevelToUnlock != 3) {
+            thanks.SetActive(false);
+        }
+        PlayerPrefs.SetInt("levelsUnlocked",LevelToUnlock);
         isInvincible = true;
         ui.showWinScreen();
         sound.playMusic("winBgMusic");
@@ -86,7 +91,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Finish"))
         {
-            Debug.Log(collision.gameObject.name);
+            Debug.Log("Finnished");
             finish();
 
         }

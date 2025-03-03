@@ -1,11 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class menuManager : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Canvas ui;
-    [SerializeField] TMPro.TMP_Text boredMenuMeanComment;
+    [SerializeField] TMP_Text boredMenuMeanComment;
     [SerializeField] GameObject levelButtons;
     string[] meanComments = { "Womp Womp", "Cant even clean", "you suck", "just sad", "Even your mom left the chat" };
     GameObject boredMenu;
@@ -37,6 +37,7 @@ public class menuManager : MonoBehaviour
         {
             boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
             winScreen = ui.gameObject.transform.Find("winScreen").gameObject;
+            winScreen.SetActive(false);
             Debug.Log("No lvl buttons here");
         }
     }
