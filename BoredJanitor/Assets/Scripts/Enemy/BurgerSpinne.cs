@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class BurgerSpinne : MonoBehaviour
 {
-    [SerializeField] float maxSpeed;
+    [SerializeField] float maxSpeed = 4f;
     Movement movement;
     Transform player;
+    [SerializeField] float width = 1.1f;
+    [SerializeField] float height= 1.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

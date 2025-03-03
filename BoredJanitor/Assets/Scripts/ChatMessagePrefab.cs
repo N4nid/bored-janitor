@@ -32,7 +32,6 @@ public class ChatMessagePrefab : MonoBehaviour
         usernameText.text = username;
         chatMessage.text = message;
         if (usernameWidth + chatWidth > maxWidth) {
-            Debug.Log("Hi");
             messageTrans.sizeDelta = new Vector2(maxWidth,messageTrans.sizeDelta.y);
             messageTrans.anchoredPosition = new Vector2(maxWidth/2 + xOffset,0f);
             chatMessage.SetText("<space=" + usernameWidth + ">" + message);

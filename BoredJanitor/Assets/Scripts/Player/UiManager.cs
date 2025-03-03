@@ -19,6 +19,7 @@ public class UiManager : MonoBehaviour
     public GameObject hud;
     public GameObject winScreen;
 
+
     void Start()
     {
         hud = ui.gameObject.transform.Find("HUD").gameObject;
@@ -53,6 +54,7 @@ public class UiManager : MonoBehaviour
 
     public void updateMotivation(float motivation, bool bigger)
     {
+        Debug.Log("bsjklfbs");
         if (bigger)
         {
             Invoke("makeSmaller", 0.3f);
@@ -90,6 +92,7 @@ public class UiManager : MonoBehaviour
                 motivationIndicator.overrideSprite = ball100;
                 break;
         }
+         setMotivationText("Motivtion: " + (int)motivation);
     }
 
     // Update is called once per frame

@@ -14,9 +14,11 @@ public class Turtle : MonoBehaviour
     [SerializeField] float spotFOV = 90;
     [SerializeField] float width = 1.2f;
     [SerializeField] float height = 1.2f;
-    [SerializeField] float roamingRadius = 4f;
+    //[SerializeField] float roamingRadius = 4f;
     [SerializeField] float jumpForce = 10f;
+    float directionX = 1f;
     float groundDistanceMargin = 0.1f;
+    Animator crabAnimator;
 
 
     bool isFacingRight = false;
@@ -25,6 +27,7 @@ public class Turtle : MonoBehaviour
 
     void Start()
     {
+        crabAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
     }
 
@@ -33,6 +36,7 @@ public class Turtle : MonoBehaviour
     {
         if (isOnGround())
         {
+            crabAnimator.SetBool("isJumping",false);
             Vector2 lookDirec = isFacingRight ? Vector2.right : Vector2.left;
             float distY = Math.Abs(player.position.y - transform.position.y);
             if (canSeePlayer(transform.position, lookDirec, spotFOV, 12))
@@ -45,6 +49,9 @@ public class Turtle : MonoBehaviour
                 roam();
             }
         }
+        else {
+            crabAnimator.SetBool("isJumping",true);
+        }
     }
 
 
@@ -56,7 +63,8 @@ public class Turtle : MonoBehaviour
     void roam()
     {
         //Debug.Log("Roaming");   
-        if (getSmallestDist(getFullRaycast(transform.position, height, Vector2.left * transform.localScale.x)) < 0.1f)
+        float smallestDist = getSmallestDist(getFullRaycast(transform.position, height, Vector2.left * directionX)) ;
+        if (smallestDist < 0.1f && smallestDist != -1f)
         {
             flipDirection();
         }
@@ -68,7 +76,7 @@ public class Turtle : MonoBehaviour
         float distX = Math.Abs(player.position.x - transform.position.x);
         float distY = Math.Abs(player.position.y - transform.position.y);
         //Debug.Log(distY);
-        if (distX < jumpDistX && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 0.4f && !isJumping)
+        if (distX < jumpDistX && (maxSpeed - Math.Abs(movemnet.rb.linearVelocityX)) < 2f && !isJumping)
         {
             isJumping = true;
             movemnet.jump(jumpForce);
@@ -115,8 +123,9 @@ public class Turtle : MonoBehaviour
         RaycastHit2D[] raycasts = new RaycastHit2D[10];
         for (int i = -5; i < 5; i++)
         {
-            raycasts[i + 5] = Physics2D.Raycast(pos + new Vector2((-width / 2 - 0.05f) * transform.localScale.x, i * (height / 10) + 0.1f), directionVector);
-            //Debug.DrawRay(pos + new Vector2((-width/2 - 0.05f) * transform.localScale.x,i * (height / 10)),directionVector, Color.yellow);
+            //Debug.Log((pos + new Vector2((-width / 2 - 0.05f) * transform.localScale.x, i * (height / 10) + 0.1f)));
+            raycasts[i + 5] = Physics2D.Raycast(pos + new Vector2((-width / 2 - 0.05f) * directionX, i * (height / 10) + 0.1f), directionVector);
+            //Debug.DrawRay(pos + new Vector2((-width / 2 - 0.05f) * transform.localScale.x, i * (height / 10) + 0.1f), directionVector * 10, Color.yellow);
         }
         return raycasts;
     }
@@ -154,6 +163,7 @@ public class Turtle : MonoBehaviour
         {
             if ((hits[i].distance < smallestDist || smallestDist == -1) && hits[i].collider != null && hits[i].collider.gameObject.tag != "Ground")
             {
+                Debug.Log(hits[i].collider.gameObject.name);
                 smallestDist = hits[i].distance;
             }
         }
@@ -172,7 +182,8 @@ public class Turtle : MonoBehaviour
 
     void flipDirection()
     {
-        transform.localScale = -transform.localScale;
+        transform.localScale *= new Vector2(-1,1);
+        directionX *= -1;
         isFacingRight = !isFacingRight;
     }
 
