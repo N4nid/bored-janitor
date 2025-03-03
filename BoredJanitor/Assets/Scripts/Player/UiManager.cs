@@ -33,9 +33,7 @@ public class UiManager : MonoBehaviour
 
     public void setMotivationText(string text)
     {
-        if (motivationText != null) {
-             motivationText.SetText(text);
-        }
+        motivationText.SetText(text);
     }
 
     public void makeBigger()
@@ -49,7 +47,7 @@ public class UiManager : MonoBehaviour
 
     public void updateMotivation(float motivation, bool bigger)
     {
-        if (motivationText != null) {
+        Debug.Log("bsjklfbs");
         if (bigger)
         {
             Invoke("makeSmaller", 0.3f);
@@ -87,7 +85,7 @@ public class UiManager : MonoBehaviour
                 motivationIndicator.overrideSprite = ball100;
                 break;
         }
-        }
+         setMotivationText("Motivtion: " + (int)motivation);
     }
 
     // Update is called once per frame
