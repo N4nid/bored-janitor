@@ -6,14 +6,39 @@ public class menuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Canvas ui;
     [SerializeField] TMPro.TMP_Text boredMenuMeanComment;
+    [SerializeField] GameObject levelButtons;
     string[] meanComments = { "Womp Womp", "Cant even clean", "you suck", "just sad", "Even your mom left the chat" };
     GameObject boredMenu;
     GameObject winScreen;
 
     void Start()
     {
-        boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
-        winScreen = ui.gameObject.transform.Find("winScreen").gameObject;
+        Debug.Log("wow on start");
+        if (levelButtons != null)
+        {
+            Debug.Log("Lvl buttons are here");
+            int levelsUnlocked = (PlayerPrefs.HasKey("levelsUnlocked")) ? (PlayerPrefs.GetInt("levelsUnlocked")) : 0;
+            for (int i = 0; i < levelsUnlocked; i++)
+            {
+                GameObject lvlButton = levelButtons.transform.GetChild(i).gameObject;
+                Debug.Log("Lvl buttons " + lvlButton.gameObject.name);
+                if (lvlButton != null)
+                {
+                    lvlButton.SetActive(true);
+                }
+                else
+                {
+                    break;
+                }
+
+            }
+        }
+        else
+        {
+            boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
+            winScreen = ui.gameObject.transform.Find("winScreen").gameObject;
+            Debug.Log("No lvl buttons here");
+        }
     }
 
 
