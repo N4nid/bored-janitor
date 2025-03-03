@@ -150,11 +150,8 @@ MonoBehaviour:
   rb: {fileID: 2975041608344026245}
   maxSpeed: 4
   accelaration: 300
-  angularAcccelaration: 1000
-  maxAngularSpeed: 10
   roamHeight: 2
   playerDistanceThreshhold: 0.5
-  mangager: {fileID: -2745031961206371074}
 --- !u!114 &-2745031961206371074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  enemyDamage: 30
+  enemyDamage: 10
   knockbackMultplyer: 8
 --- !u!58 &414916880820822371
 CircleCollider2D:

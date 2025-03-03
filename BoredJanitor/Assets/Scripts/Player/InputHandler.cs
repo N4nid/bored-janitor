@@ -9,6 +9,8 @@ public class InputHandler : MonoBehaviour
     InputAction moveRightAction;
     InputAction heavyAttack;
     InputAction lightAttack;
+    InputAction changeWeapon;
+    bool keyPressed = false;
     [SerializeField] PlayerMovement movement;
     [SerializeField] PlayerAttackManager playerAttackManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -20,6 +22,7 @@ public class InputHandler : MonoBehaviour
         moveRightAction = InputSystem.actions.FindAction("moveRight");
         lightAttack = InputSystem.actions.FindAction("lightAttack");
         heavyAttack = InputSystem.actions.FindAction("heavyAttack");
+        changeWeapon = InputSystem.actions.FindAction("changeWeapon");
         //Debug.Log("Actions: " + moveRightAction + "|" + moveLeftAction + "|" + jumpAction);
     }
 
@@ -42,10 +45,20 @@ public class InputHandler : MonoBehaviour
         {
             playerAttackManager.LighthAttack();
         }
-        if (heavyAttack.IsPressed())
+        if (heavyAttack.IsPressed()&& !keyPressed)
         {
             playerAttackManager.HeavyAttack();
+            keyPressed = true;
+            Invoke("resetPressed",0.3f);
+        }
+        if (changeWeapon.IsPressed() && !keyPressed) {
+            playerAttackManager.SwapWeapons();
+            keyPressed = true;
+            Invoke("resetPressed",0.4f);
         }
 
+    }
+    void resetPressed() {
+        keyPressed = false;
     }
 }
