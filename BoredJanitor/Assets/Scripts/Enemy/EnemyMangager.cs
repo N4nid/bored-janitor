@@ -38,7 +38,6 @@ public class EnemyMangager : MonoBehaviour
             {
                 playerManager.loseMotivation(enemyDamage);
             }
-            Debug.Log("HIT YOU ");
 
         }
     }
