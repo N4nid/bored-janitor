@@ -6,12 +6,22 @@ public class menuManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] Canvas ui;
     [SerializeField] TMPro.TMP_Text boredMenuMeanComment;
-    string[] meanComments = { "Womp Womp", "Cant even clean", "you suck", "-1 viewer", "Even your mom left the chat" };
+    string[] meanComments = { "Womp Womp", "Cant even clean", "you suck", "just sad", "Even your mom left the chat" };
     GameObject boredMenu;
+    GameObject winScreen;
+
     void Start()
     {
         boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
+        winScreen = ui.gameObject.transform.Find("winScreen").gameObject;
     }
+
+
+    public void showWinScreen()
+    {
+        winScreen.SetActive(true);
+    }
+
     public void showBoredMenu()
     {
         Debug.Log("IF boredMENU NOT there look in boredMenuImg in player");
@@ -19,6 +29,20 @@ public class menuManager : MonoBehaviour
         string comment = meanComments[Random.Range(0, meanComments.Length - 1)];
         boredMenuMeanComment.SetText(comment);
     }
+
+    public void nextLevel()
+    {
+        if (PlayerPrefs.HasKey("levelsUnlocked"))
+            PlayerPrefs.SetInt("levelsUnlocked", PlayerPrefs.GetInt("levelsUnlocked") + 1);
+        else
+            PlayerPrefs.SetInt("levelsUnlocked", 0);
+
+        Debug.Log("LvLs unlocked: " + PlayerPrefs.GetInt("levelsUnlocked"));
+
+        PlayerPrefs.Save();
+        goToMainMenu();
+    }
+
     public void goToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");

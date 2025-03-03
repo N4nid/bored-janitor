@@ -75,7 +75,11 @@ public class PlayerManager : MonoBehaviour
 
     void finish()
     {
-        //TODO make finish
+        //set animation state
+        isInvincible = true;
+        ui.showWinScreen();
+        sound.playMusic("winBgMusic");
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

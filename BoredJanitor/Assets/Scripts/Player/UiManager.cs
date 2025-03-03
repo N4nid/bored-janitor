@@ -17,13 +17,20 @@ public class UiManager : MonoBehaviour
     [SerializeField] Canvas ui;
     public GameObject boredMenu;
     public GameObject hud;
+    public GameObject winScreen;
 
     void Start()
     {
         hud = ui.gameObject.transform.Find("HUD").gameObject;
+        winScreen = ui.gameObject.transform.Find("winScreen").gameObject;
         boredMenu = ui.gameObject.transform.Find("boredMenu").gameObject;
     }
 
+    public void showWinScreen()
+    {
+        hud.SetActive(false);
+        ui.GetComponent<Animator>().SetBool("play", true);
+    }
     public void showBoredMenu()
     {
         hud.SetActive(false);

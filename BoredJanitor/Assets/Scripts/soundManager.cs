@@ -20,6 +20,8 @@ public class soundManager : MonoBehaviour
     [SerializeField] float boredBgMusicVolume = 0.3f;
     [SerializeField] AudioClip mainBgMusic;
     [SerializeField] float mainBgMusicVolume = 0.3f;
+    [SerializeField] AudioClip winBgMusic;
+    [SerializeField] float winBgMusicVolume = 0.4f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -34,6 +36,10 @@ public class soundManager : MonoBehaviour
 
         switch (sound)
         {
+            case "winBgMusic":
+                volume = winBgMusicVolume;
+                clip = winBgMusic;
+                break;
             case "fastBgMusic":
                 volume = fastBgMusicVolume;
                 clip = fastBgMusic;
