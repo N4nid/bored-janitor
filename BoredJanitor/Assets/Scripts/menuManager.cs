@@ -41,6 +41,12 @@ public class menuManager : MonoBehaviour
         }
     }
 
+    public void loadlevel(string lvl)
+    {
+        SceneManager.LoadScene(lvl);
+
+    }
+
 
     public void showWinScreen()
     {
