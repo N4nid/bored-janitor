@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: LEVEL 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
   m_sharedMaterial: {fileID: -8277296183043710215, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
@@ -776,7 +776,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 746575189}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1198151652}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: loadlevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Level3
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &746575189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,7 +1271,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1296534004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1198151652}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: loadlevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: RealTutorial
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1296534004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1530,7 +1554,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: LevelL
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1685219894
@@ -1628,7 +1652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL 1
+  m_text: LEVEL 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
   m_sharedMaterial: {fileID: -8277296183043710215, guid: e3759b041b4dec0c9a1b84b2fd19eec0, type: 2}
@@ -1789,7 +1813,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1841721512}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1198151652}
+        m_TargetAssemblyTypeName: menuManager, Assembly-CSharp
+        m_MethodName: loadlevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MyLevel
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1841721512
 MonoBehaviour:
   m_ObjectHideFlags: 0
