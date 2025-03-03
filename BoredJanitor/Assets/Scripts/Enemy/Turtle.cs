@@ -14,7 +14,7 @@ public class Turtle : MonoBehaviour
     [SerializeField] float spotFOV = 90;
     [SerializeField] float width = 1.2f;
     [SerializeField] float height = 1.2f;
-    [SerializeField] float roamingRadius = 4f;
+    //[SerializeField] float roamingRadius = 4f;
     [SerializeField] float jumpForce = 10f;
     float directionX = 1f;
     float groundDistanceMargin = 0.1f;
@@ -146,7 +146,7 @@ public class Turtle : MonoBehaviour
         {
             if (raycasts[i].collider != null)
             {
-                Debug.Log(raycasts[i].collider.gameObject.name);    
+                //Debug.Log(raycasts[i].collider.gameObject.name);    
             }
             if (raycasts[i].collider != null && raycasts[i].collider.tag.Equals("Player") && raycasts[i].distance < spotDistance)
             {

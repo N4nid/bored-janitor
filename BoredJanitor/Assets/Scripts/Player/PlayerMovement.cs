@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private Vector3 velocity;
+    //private Vector3 velocity;
     [SerializeField] GameObject player;
     [SerializeField] Rigidbody2D body;
     [SerializeField] float jumpForce;
@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator playerAnime;
     [SerializeField] float pullupRayLength = 1f;
     [SerializeField] float pullupFactor = 0.3f;
-    [SerializeField] float test = 0.3f;
+    //[SerializeField] float test = 0.3f;
     bool isJumping = false;
     float direction;
     float groundDistanceMargin = 0.1f;

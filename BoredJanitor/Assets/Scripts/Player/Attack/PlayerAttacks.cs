@@ -14,6 +14,8 @@ public class PlayerAttacks : MonoBehaviour
         HitboxInfos[0, 0] = new HitboxInfo(new Vector3(4, 1), new Vector2(2, 0.5f)); //ligth
                                                                                      //HitboxInfos[0, 1] = new HitboxInfo(new Vector3(2, 2), new Vector2(1.5f, 1)); //heavy
         HitboxInfos[0, 1] = new HitboxInfo(new Vector3(3.2f, 4.2f), new Vector2(1.4f, 2.1f)); //heavy
+        HitboxInfos[1, 0] = new HitboxInfo(new Vector3(4f, 1.5f), new Vector2(0f,1f));
+        HitboxInfos[1, 1] = new HitboxInfo(new Vector3(3f, 2f), new Vector2(0f, 0f));
     }
 
     public void CreateHitbox(int weaponTyp, int attackStyle)

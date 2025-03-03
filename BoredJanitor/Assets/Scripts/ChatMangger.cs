@@ -7,14 +7,14 @@ public class ChatMangger : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] GameObject chatMessagePrefab;
     [SerializeField] GameObject chatView;
-    [SerializeField] float maxWidth = 450;
+    //[SerializeField] float maxWidth = 450;
     [SerializeField] float xMargin = 245f;
     [SerializeField] float startY = 30f;
     [SerializeField] float yIncrement = 50f;
     List<GameObject> messages;
     GameObject player;
     [SerializeField] float viewHeight = 290;
-    int increment = 0;
+    //int increment = 0;
     int prevLineCount;
     float currentY;
     string[] usernames = {"Soliy", "MortySmith", "Nanid","Aurelia","Elonita_Express","zellis","Alica","isTrue","Semilocon"
