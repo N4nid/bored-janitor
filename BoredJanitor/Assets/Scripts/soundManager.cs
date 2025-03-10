@@ -106,7 +106,7 @@ public class soundManager : MonoBehaviour
         }
         if (toPlay != null)
         {
-
+            
             clonedSfx.pitch = pitch;
             clonedSfx.volume = volume;
             clonedSfx.PlayOneShot(toPlay);

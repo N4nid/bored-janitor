@@ -28,7 +28,7 @@ public class PlayerAttackManager : MonoBehaviour
 
     public String getWeapon()
     {
-        if (weaponIndex == 1){
+        if (weaponIndex == 0){
             return "Broom";
         }
         return "Shovel";

@@ -29,7 +29,7 @@ public class PlayerManager : MonoBehaviour
 
     public void timer()
     {
-        loseMotivation(5);
+        loseMotivation(3);
         if (motivation > 0 && !isInvincible)
         {
             Invoke("timer", 1);
